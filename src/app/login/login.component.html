@@ -1,0 +1,27 @@
+<div class="login-container">
+	<div class="brand-image">
+		<img src="assets/images/logo.png">
+	</div>
+	<div class="auth-box">
+		<h1>Administrator Sign In</h1>
+		<h3 style="margin-top: 1em">Enter your username and password to continue</h3>
+		<mat-form-field appearance="outline" class="full-width margin-top-1">
+			<mat-label>Username/Email</mat-label>
+			<input type="text" matInput>
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>Password</mat-label>
+			<input matInput [type]="hidePasswordFieldText ? 'password' : 'text'">
+			<button mat-icon-button matSuffix (click)="hidePasswordFieldText = !hidePasswordFieldText">
+				<mat-icon>{{hidePasswordFieldText ? 'visibility_off' : 'visibility'}}</mat-icon>
+			</button>
+		</mat-form-field>
+		<div style="display: flex; justify-content: space-between; align-items: center">
+			<mat-checkbox color="primary">Remember me on this device</mat-checkbox>
+			<a href="#">Need Help?</a>
+		</div>
+		<div class="margin-top-2">
+			<button mat-raised-button color="primary" class="full-width">Sign In</button>
+		</div>
+	</div>
+</div>

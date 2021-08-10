@@ -1,0 +1,24 @@
+.login-container {
+	display: flex;
+	height: 100vh;
+
+	.brand-image {
+		flex: 5;
+		background: url("../../assets/images/auth_bg.png") top left no-repeat;
+		background-size: cover;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.auth-box {
+		flex: 2;
+		padding: 8em;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		//align-items: center;
+	}
+}
