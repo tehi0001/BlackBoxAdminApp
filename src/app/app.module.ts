@@ -17,6 +17,7 @@ import { PromotionsComponent } from './promotions/promotions.component';
 import { AdministratorsComponent } from './administrators/administrators.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AddProductCategoryComponent } from './add-product-category/add-product-category.component';
 
 @NgModule({
 	declarations: [
@@ -32,7 +33,8 @@ import { LogoutComponent } from './logout/logout.component';
   PromotionsComponent,
   AdministratorsComponent,
   SettingsComponent,
-  LogoutComponent
+  LogoutComponent,
+  AddProductCategoryComponent
 	],
 	imports: [
 		BrowserModule,

@@ -12,6 +12,7 @@ import {PromotionsComponent} from "./promotions/promotions.component";
 import {AdministratorsComponent} from "./administrators/administrators.component";
 import {SettingsComponent} from "./settings/settings.component";
 import {LogoutComponent} from "./logout/logout.component";
+import {AddProductCategoryComponent} from "./add-product-category/add-product-category.component";
 
 const routes: Routes = [
 	{
@@ -43,6 +44,10 @@ const routes: Routes = [
 			{
 				path: "product-categories",
 				component: ProductCategoriesComponent
+			},
+			{
+				path: "product-categories/add",
+				component: AddProductCategoryComponent
 			},
 			{
 				path: "orders",

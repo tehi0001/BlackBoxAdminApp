@@ -76,4 +76,8 @@ a, a[routerLink] {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	button {
+		text-transform: uppercase;
+	}
 }
