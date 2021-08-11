@@ -1,0 +1,80 @@
+@import "src/theme";
+
+.navbar {
+	display: flex;
+	align-items: center;
+	padding: 1em 2em;
+
+	.navbar-logo {
+		height: 50px;
+	}
+
+	.session-user {
+		display: flex;
+		align-items: center;
+		color: $dark-gray;
+		font-size: 15px;
+		margin-left: 1.5em;
+
+		img {
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			margin-right: .5em;
+		}
+	}
+}
+
+.main-content {
+	display: flex;
+
+	.side-nav {
+		width: 300px;
+		padding-right: 2em;
+
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			background: $tint;
+
+			li {
+				padding: 0;
+				margin: 0;
+
+				a {
+					display: flex;
+					align-items: center;
+					padding: 1em 1.5em;
+					font-size: 16px;
+					color: #000;
+
+					mat-icon {
+						font-size: 20px;
+						margin-right: .5em;
+						color: $dark-gray;
+					}
+
+					&:hover {
+						background: lighten($primary, 40%);
+						position: relative;
+
+						&:before {
+							content: '';
+							position: absolute;
+							left: 0;
+							top: 0;
+							bottom: 0;
+							width: 5px;
+							background: $primary;
+						}
+					}
+				}
+			}
+		}
+	}
+	.route-content {
+		background: $tint;
+		padding: 2em;
+	}
+}
