@@ -36,6 +36,7 @@
 			list-style: none;
 			padding: 0;
 			margin: 0;
+			width: 100%;
 			background: $tint;
 
 			li {
@@ -75,6 +76,7 @@
 	}
 	.route-content {
 		background: $tint;
-		padding: 2em 2em 4em;
+		padding: 3em 3em 4em;
+		flex: 1 1 70%;
 	}
 }

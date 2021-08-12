@@ -13,6 +13,8 @@ import {AdministratorsComponent} from "./administrators/administrators.component
 import {SettingsComponent} from "./settings/settings.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AddProductCategoryComponent} from "./add-product-category/add-product-category.component";
+import {AddProductComponent} from "./add-product/add-product.component";
+import {ViewProductComponent} from "./view-product/view-product.component";
 
 const routes: Routes = [
 	{
@@ -40,6 +42,14 @@ const routes: Routes = [
 			{
 				path: "products",
 				component: ProductsComponent
+			},
+			{
+				path: "products/add",
+				component: AddProductComponent
+			},
+			{
+				path: "products/:id",
+				component: ViewProductComponent
 			},
 			{
 				path: "product-categories",

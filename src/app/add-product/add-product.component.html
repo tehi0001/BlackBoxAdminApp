@@ -1,0 +1,77 @@
+<div class="page-header">
+	<h1>Add New Product</h1>
+	<button mat-raised-button color="warn" routerLink="/app/products">
+		<mat-icon>close</mat-icon>
+		Cancel
+	</button>
+</div>
+
+<mat-card class="add-product margin-top-3">
+	<div class="product-images">
+		<div class="product-img-lg">
+			<img src="assets/dummies/product_large@2x.png">
+		</div>
+		<div class="thumbnails margin-top-2">
+			<div class="product-thumbnail">
+				<img src="assets/dummies/product.png">
+			</div>
+			<button class="add-img-btn">
+				<mat-icon>add</mat-icon>
+			</button>
+		</div>
+	</div>
+	<div class="add-form">
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>Product category</mat-label>
+			<mat-select>
+				<mat-option *ngFor="let i of [1,2,3,4,5,6,7]" [value]="i">
+					Category {{i}}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>Product name</mat-label>
+			<input type="text" matInput>
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>Manufacturer</mat-label>
+			<input type="text" matInput>
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>Price</mat-label>
+			<input type="text" matInput>
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>Stock</mat-label>
+			<input type="text" matInput>
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>Description</mat-label>
+			<textarea rows="7" matInput></textarea>
+		</mat-form-field>
+
+		<div class="product-properties">
+			<div class="header">
+				<h3>Product Properties</h3>
+				<button mat-stroked-button color="primary">ADD PROPERTY</button>
+			</div>
+			<table class="property-table margin-top-half">
+				<tr>
+					<th>Property Name</th>
+					<th>Value</th>
+					<th class="align-right">Action</th>
+				</tr>
+				<tr *ngFor="let i of [1,2,3,4,5]">
+					<td>Color</td>
+					<td>Green</td>
+					<td class="align-right">
+						<mat-icon class="clickable">delete</mat-icon>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="margin-top-3">
+			<button mat-raised-button class="full-width" color="primary">SAVE PRODUCT</button>
+		</div>
+	</div>
+</mat-card>

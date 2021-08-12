@@ -18,6 +18,8 @@ import { AdministratorsComponent } from './administrators/administrators.compone
 import { SettingsComponent } from './settings/settings.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AddProductCategoryComponent } from './add-product-category/add-product-category.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ViewProductComponent } from './view-product/view-product.component';
 
 @NgModule({
 	declarations: [
@@ -34,7 +36,9 @@ import { AddProductCategoryComponent } from './add-product-category/add-product-
   AdministratorsComponent,
   SettingsComponent,
   LogoutComponent,
-  AddProductCategoryComponent
+  AddProductCategoryComponent,
+  AddProductComponent,
+  ViewProductComponent
 	],
 	imports: [
 		BrowserModule,

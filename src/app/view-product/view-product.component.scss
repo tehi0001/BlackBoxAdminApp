@@ -1,0 +1,148 @@
+@import "src/theme";
+
+.view-product {
+	padding: 4em;
+
+	.product-info {
+		display: flex;
+
+		.product-images {
+			margin-right: 7em;
+
+			.product-img-lg {
+
+				img {
+					max-width: 400px;
+				}
+			}
+
+			.thumbnails {
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				.product-thumbnail {
+					padding: .6em;
+					box-shadow: 0 0 2px gray;
+					border-radius: 5px;
+					margin-right: 1em;
+
+					img {
+						height: 55px;
+						width: 55px;
+					}
+				}
+			}
+		}
+
+		.product-details {
+			padding-top: 2em;
+
+			.price {
+				font-weight: 500;
+				font-size: 20px;
+
+				margin-right: 3em;
+			}
+			.stock-count {
+				background: green;
+				padding: .1em 1em;
+				color: #fff;
+				border-radius: 20px;
+			}
+
+			.properties {
+
+				.property {
+					display: flex;
+					align-items: center;
+					margin-top: .5em;
+
+					.property-name {
+						margin-right: 2em;
+						font-weight: 500;
+					}
+				}
+			}
+
+			.shipping-info {
+				display: flex;
+				align-items: center;
+				font-size: 16px;
+
+				mat-icon {
+					margin-right: .5em;
+				}
+			}
+		}
+	}
+
+	.ratings-reviews {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 6em;
+
+		.ratings {
+			font-size: 16px;
+			.rating-stars {
+				display: flex;
+				align-items: center;
+
+				mat-icon {
+					font-size: 40px;
+					color: $primary;
+					margin-right: 0.3em;
+				}
+
+				h1 {
+					padding-top: 0.6em;
+					margin: 0 0 0 0.5em;
+				}
+			}
+
+			.rating-bars {
+
+				.bar {
+					display: flex;
+					align-items: center;
+					margin-bottom: 1em;
+
+					.bar-bg {
+						background: lightgray;
+						flex: 1 1 auto;
+						margin: 0 .5em;
+						height: 30px;
+
+						.bar-value {
+							height: 100%;
+							background: $primary;
+						}
+					}
+				}
+			}
+		}
+		.reviews {
+
+			.review {
+				font-size: 16px;
+				padding: 1.5em 0;
+				border-bottom: 1px solid lightgray;
+
+				&:first-child {
+					padding-top: 0;
+				}
+
+				.header {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+
+					.poster {
+						margin: 0;
+						font-size: 17px;
+						font-weight: 500;
+					}
+				}
+			}
+		}
+	}
+}
