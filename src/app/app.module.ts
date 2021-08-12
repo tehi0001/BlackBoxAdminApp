@@ -22,6 +22,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { ViewProductComponent } from './view-product/view-product.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
 import { AddShippingCostComponent } from './add-shipping-cost/add-shipping-cost.component';
+import { ViewCustomerComponent } from './view-customer/view-customer.component';
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,8 @@ import { AddShippingCostComponent } from './add-shipping-cost/add-shipping-cost.
   AddProductComponent,
   ViewProductComponent,
   ViewOrderComponent,
-  AddShippingCostComponent
+  AddShippingCostComponent,
+  ViewCustomerComponent
 	],
 	imports: [
 		BrowserModule,

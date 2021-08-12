@@ -17,6 +17,7 @@ import {AddProductComponent} from "./add-product/add-product.component";
 import {ViewProductComponent} from "./view-product/view-product.component";
 import {ViewOrderComponent} from "./view-order/view-order.component";
 import {AddShippingCostComponent} from "./add-shipping-cost/add-shipping-cost.component";
+import {ViewCustomerComponent} from "./view-customer/view-customer.component";
 
 const routes: Routes = [
 	{
@@ -72,6 +73,10 @@ const routes: Routes = [
 			{
 				path: "customers",
 				component: CustomersComponent
+			},
+			{
+				path: "customers/:id",
+				component: ViewCustomerComponent
 			},
 			{
 				path: "shipping-costs",
