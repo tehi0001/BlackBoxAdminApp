@@ -15,6 +15,7 @@ import {LogoutComponent} from "./logout/logout.component";
 import {AddProductCategoryComponent} from "./add-product-category/add-product-category.component";
 import {AddProductComponent} from "./add-product/add-product.component";
 import {ViewProductComponent} from "./view-product/view-product.component";
+import {ViewOrderComponent} from "./view-order/view-order.component";
 
 const routes: Routes = [
 	{
@@ -62,6 +63,10 @@ const routes: Routes = [
 			{
 				path: "orders",
 				component: OrdersComponent
+			},
+			{
+				path: "orders/:id",
+				component: ViewOrderComponent
 			},
 			{
 				path: "customers",

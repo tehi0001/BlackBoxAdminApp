@@ -1,0 +1,131 @@
+<div class="page-header">
+	<h1>Order Details</h1>
+	<button mat-raised-button color="accent" routerLink="/app/orders">
+		<mat-icon>arrow_back</mat-icon>
+		Back to orders
+	</button>
+</div>
+
+<mat-card class="margin-top-3 view-order-info">
+	<div class="order-details">
+		<mat-card class="order-info">
+			<h3>Order Details</h3>
+			<table>
+				<tr>
+					<th>Order ID</th>
+					<td>1233556</td>
+				</tr>
+				<tr>
+					<th>Date</th>
+					<td>12 January 2020 10:34 pm</td>
+				</tr>
+				<tr>
+					<th>Payment Method</th>
+					<td>Instant EFT</td>
+				</tr>
+				<tr>
+					<th>Order Status</th>
+					<td>Pending</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<mat-form-field class="full-width">
+							<mat-label>Update order status</mat-label>
+							<mat-select>
+								<mat-option value="1">Pending</mat-option>
+								<mat-option value="1">Processing</mat-option>
+								<mat-option value="1">Shipped</mat-option>
+								<mat-option value="1">Delivered</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</td>
+				</tr>
+			</table>
+		</mat-card>
+		<mat-card class="billing-info">
+			<h3>Billing Information</h3>
+			<table>
+				<tr>
+					<th>Billing Name</th>
+					<td>John Doe</td>
+				</tr>
+				<tr>
+					<th>Billing Address</th>
+					<td>
+						<div>123 Test street</div>
+						<div>Test City</div>
+						<div>Test State, Test zip</div>
+					</td>
+				</tr>
+				<tr>
+					<th>Phone</th>
+					<td>063 344 2293</td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td>johndoe@gmail.com</td>
+				</tr>
+			</table>
+		</mat-card>
+		<mat-card class="shipping-info">
+			<h3>Shipping Information</h3>
+			<table>
+				<tr>
+					<th>Shipping Name</th>
+					<td>John Doe</td>
+				</tr>
+				<tr>
+					<th>Shipping Address</th>
+					<td>
+						<div>123 Test street</div>
+						<div>Test City</div>
+						<div>Test State, Test zip</div>
+					</td>
+				</tr>
+				<tr>
+					<th>Phone</th>
+					<td>063 344 2293</td>
+				</tr>
+				<tr>
+					<th>Shipping Mode</th>
+					<td>Priority</td>
+				</tr>
+			</table>
+		</mat-card>
+	</div>
+
+	<div class="ordered-items margin-top-3">
+		<h2>Ordered Items</h2>
+		<table class="full-width items-table margin-top-2">
+			<tr>
+				<th>Item</th>
+				<th>Quantity</th>
+				<th class="align-right">Amount</th>
+				<th class="align-right">Total</th>
+			</tr>
+			<tr *ngFor="let i of [1,2,3,4,5]">
+				<td>Test item in this row thing</td>
+				<td>2</td>
+				<td class="align-right">200.87</td>
+				<td class="align-right">1700.76</td>
+			</tr>
+			<tr class="sub-total">
+				<td>Sub Total</td>
+				<td colspan="3" class="align-right">12990.89</td>
+			</tr>
+			<tr class="shipping-cost">
+				<td>Shipping</td>
+				<td colspan="3" class="align-right">150.45</td>
+			</tr>
+			<tr class="order-total">
+				<td>Order Total</td>
+				<td colspan="3" class="align-right">150.45</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="align-center margin-top-3">
+		<button mat-raised-button color="warn">DELETE THIS ORDER</button>
+	</div>
+
+</mat-card>

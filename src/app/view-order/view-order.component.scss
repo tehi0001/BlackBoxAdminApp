@@ -1,0 +1,82 @@
+@import "src/theme";
+
+.view-order-info {
+	padding: 2em;
+	font-size: 16px;
+
+	.order-details {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 3em;
+
+		mat-card {
+
+			h3 {
+				font-weight: 500;
+				color: $primary;
+				font-size: 17px;
+				margin: 0 0 1em;
+			}
+
+			table {
+				th, td {
+					padding: .5em 0;
+				}
+
+				th {
+					text-align: left;
+					padding-right: 2em;
+					vertical-align: top;
+					color: $dark-gray;
+
+					&:after {
+						content: ':';
+						margin-left: .3em;
+					}
+				}
+			}
+		}
+	}
+
+	.ordered-items {
+
+		.items-table {
+			border-collapse: collapse;
+			td, th {
+				padding: .75em 1em;
+			}
+			th {
+				background: lightgray;
+				text-align: left;
+
+				&.align-right {
+					text-align: right;
+				}
+			}
+			td {
+				border-bottom: 1px solid lightgray;
+			}
+
+			.sub-total {
+				td {
+					background: $tint;
+					font-weight: 500;
+					font-size: 17px;
+				}
+			}
+			.shipping-cost {
+				td {
+					font-weight: bold;
+				}
+			}
+
+			.order-total {
+				td {
+					border-bottom: none;
+					padding: 1em;
+					font-size: 20px;
+				}
+			}
+		}
+	}
+}
