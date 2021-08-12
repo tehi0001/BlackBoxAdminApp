@@ -16,6 +16,7 @@ import {AddProductCategoryComponent} from "./add-product-category/add-product-ca
 import {AddProductComponent} from "./add-product/add-product.component";
 import {ViewProductComponent} from "./view-product/view-product.component";
 import {ViewOrderComponent} from "./view-order/view-order.component";
+import {AddShippingCostComponent} from "./add-shipping-cost/add-shipping-cost.component";
 
 const routes: Routes = [
 	{
@@ -75,6 +76,10 @@ const routes: Routes = [
 			{
 				path: "shipping-costs",
 				component: ShippingCostsComponent
+			},
+			{
+				path: "shipping-costs/add",
+				component: AddShippingCostComponent
 			},
 			{
 				path: "promotions",

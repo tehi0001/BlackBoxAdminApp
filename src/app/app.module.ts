@@ -21,6 +21,7 @@ import { AddProductCategoryComponent } from './add-product-category/add-product-
 import { AddProductComponent } from './add-product/add-product.component';
 import { ViewProductComponent } from './view-product/view-product.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
+import { AddShippingCostComponent } from './add-shipping-cost/add-shipping-cost.component';
 
 @NgModule({
 	declarations: [
@@ -40,7 +41,8 @@ import { ViewOrderComponent } from './view-order/view-order.component';
   AddProductCategoryComponent,
   AddProductComponent,
   ViewProductComponent,
-  ViewOrderComponent
+  ViewOrderComponent,
+  AddShippingCostComponent
 	],
 	imports: [
 		BrowserModule,
