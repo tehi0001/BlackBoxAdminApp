@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductCategory} from "../models/product-category";
+import {ProductCategory} from "../models/product-categories";
 import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
