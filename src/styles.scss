@@ -85,3 +85,9 @@ a, a[routerLink] {
 .text-primary {
 	color: $primary;
 }
+
+button {
+	mat-spinner {
+		margin: .6em auto;
+	}
+}

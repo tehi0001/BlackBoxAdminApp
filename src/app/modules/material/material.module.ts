@@ -13,7 +13,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from "@angular/material/paginator";
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
 	declarations: [],
@@ -31,7 +31,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 		MatMenuModule,
 		MatCheckboxModule,
 		MatTableModule,
-		MatPaginatorModule
+		MatPaginatorModule,
+		MatProgressSpinnerModule
 	],
 	exports: [
 		MatToolbarModule,
@@ -46,7 +47,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 		MatMenuModule,
 		MatCheckboxModule,
 		MatTableModule,
-		MatPaginatorModule
+		MatPaginatorModule,
+		MatProgressSpinnerModule
 	]
 })
 export class MaterialModule {}

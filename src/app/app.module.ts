@@ -23,36 +23,42 @@ import { ViewProductComponent } from './view-product/view-product.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
 import { AddShippingCostComponent } from './add-shipping-cost/add-shipping-cost.component';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {SessionService} from "./services/session.service";
+import {DialogService} from "./services/dialog.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		LoginComponent,
-  MainComponent,
-  DashboardComponent,
-  ProductsComponent,
-  ProductCategoriesComponent,
-  OrdersComponent,
-  CustomersComponent,
-  ShippingCostsComponent,
-  PromotionsComponent,
-  AdministratorsComponent,
-  SettingsComponent,
-  LogoutComponent,
-  AddProductCategoryComponent,
-  AddProductComponent,
-  ViewProductComponent,
-  ViewOrderComponent,
-  AddShippingCostComponent,
-  ViewCustomerComponent
+		MainComponent,
+		DashboardComponent,
+		ProductsComponent,
+		ProductCategoriesComponent,
+		OrdersComponent,
+		CustomersComponent,
+		ShippingCostsComponent,
+		PromotionsComponent,
+		AdministratorsComponent,
+		SettingsComponent,
+		LogoutComponent,
+		AddProductCategoryComponent,
+		AddProductComponent,
+		ViewProductComponent,
+		ViewOrderComponent,
+		AddShippingCostComponent,
+		ViewCustomerComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
-		MaterialModule
+		MaterialModule,
+		ReactiveFormsModule,
+		HttpClientModule
 	],
-	providers: [],
+	providers: [SessionService, DialogService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

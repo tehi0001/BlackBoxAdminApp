@@ -18,6 +18,7 @@ import {ViewProductComponent} from "./view-product/view-product.component";
 import {ViewOrderComponent} from "./view-order/view-order.component";
 import {AddShippingCostComponent} from "./add-shipping-cost/add-shipping-cost.component";
 import {ViewCustomerComponent} from "./view-customer/view-customer.component";
+import {AuthGuard} from "./guards/auth.guard";
 
 const routes: Routes = [
 	{
@@ -32,6 +33,7 @@ const routes: Routes = [
 	{
 		path: "app",
 		component: MainComponent,
+		canActivate: [AuthGuard],
 		children: [
 			{
 				path: "",
