@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
+import {DialogService} from "../services/dialog.service";
 
 @Component({
 	selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
 	constructor(
 		private authService: AuthService,
-		private router: Router
+		private router: Router,
+		private dialogService: DialogService
 	) {
 		this.authForm = new FormGroup({
 			email: new FormControl('', [Validators.required, Validators.email]),
@@ -37,6 +39,9 @@ export class LoginComponent implements OnInit {
 			if(response.success) {
 				this.authService.startSession(response.token);
 				this.router.navigateByUrl("/app");
+			}
+			else {
+				this.dialogService.notify(response.message);
 			}
 
 			this.authFormBusy = false

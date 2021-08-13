@@ -13,7 +13,7 @@
 			<mat-form-field appearance="outline" class="full-width">
 				<mat-label>Password</mat-label>
 				<input matInput [type]="hidePasswordFieldText ? 'password' : 'text'" formControlName="password">
-				<button mat-icon-button matSuffix (click)="hidePasswordFieldText = !hidePasswordFieldText">
+				<button type="button" mat-icon-button matSuffix (click)="hidePasswordFieldText = !hidePasswordFieldText">
 					<mat-icon>{{hidePasswordFieldText ? 'visibility_off' : 'visibility'}}</mat-icon>
 				</button>
 			</mat-form-field>
@@ -22,7 +22,7 @@
 				<a href="#">Need Help?</a>
 			</div>
 			<div class="margin-top-2">
-				<button mat-raised-button color="primary" class="full-width" routerLink="/app" [disabled]="authForm.invalid || authFormBusy">
+				<button type="submit" mat-raised-button color="primary" class="full-width" routerLink="/app" [disabled]="authForm.invalid || authFormBusy">
 					<span *ngIf="!authFormBusy">Sign In</span>
 					<mat-spinner diameter="20" *ngIf="authFormBusy"></mat-spinner>
 				</button>
