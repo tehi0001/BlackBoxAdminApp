@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,21 @@ export class SessionService {
 		this.sessionToken = null;
 		sessionStorage.clear();
 		this.isLoggedIn = false;
+	}
+
+	get httpRequestConfig(): any {
+		return {
+			headers: new HttpHeaders({
+				Authorization: "Bearer " + this.sessionToken
+			})
+		}
+	}
+
+	renewSessionToken(response: any): any {
+		if (response.token) {
+			this.startSession(response.token);
+		}
+
+		return response;
 	}
 }

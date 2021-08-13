@@ -8,18 +8,21 @@
 
 <mat-card class="margin-top-3">
 	<div class="add-form">
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Category name</mat-label>
-			<input type="text" matInput>
-		</mat-form-field>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Description</mat-label>
-			<textarea matInput></textarea>
-		</mat-form-field>
-		<div class="margin-top-1">
-			<button mat-raised-button color="primary" class="full-width">
-				Save
-			</button>
-		</div>
+		<form [formGroup]="addCategoryForm" (submit)="save()">
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Category name</mat-label>
+				<input type="text" matInput formControlName="name">
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Description</mat-label>
+				<input type="text" matInput formControlName="description">
+			</mat-form-field>
+			<div class="margin-top-1">
+				<button mat-raised-button color="primary" class="full-width" [disabled]="addCategoryForm.invalid || addCategoryFormBusy">
+					<span *ngIf="!addCategoryFormBusy">Save</span>
+					<mat-spinner diameter="20" *ngIf="addCategoryFormBusy"></mat-spinner>
+				</button>
+			</div>
+		</form>
 	</div>
 </mat-card>

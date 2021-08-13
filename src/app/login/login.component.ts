@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
 
 			this.authFormBusy = false
 		}, error => {
+			this.dialogService.showServerErrorMessage();
 			this.authFormBusy = false;
 		})
 	}

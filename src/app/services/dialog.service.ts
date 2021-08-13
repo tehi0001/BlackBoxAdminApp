@@ -12,8 +12,12 @@ export class DialogService {
 
 	notify(message: string, type: "error" | "success" = "error", actionText: string = "OK") {
 		this.snackBar.open(message, actionText, {
-			duration: 3000,
+			duration: 5000,
 			panelClass: (type == "success") ? "success-message" : "error-message"
 		});
+	}
+
+	showServerErrorMessage(): void {
+		this.notify("An unknown error occurred. Please try again");
 	}
 }

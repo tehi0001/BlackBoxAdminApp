@@ -3,3 +3,8 @@ export interface ProductCategory {
 	description: string;
 	dateCreated: string;
 }
+
+export interface ProductCategoryRequest {
+	name: string;
+	description: string;
+}
