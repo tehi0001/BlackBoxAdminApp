@@ -15,7 +15,7 @@ export class ProductCategoriesComponent implements OnInit {
 	// @ts-ignore
 	tableDataSource: MatTableDataSource<ProductCategory>;
 
-	displayedColumns: string[] = ['sn', 'name', 'description', 'dateCreated', 'actions'];
+	displayedColumns: string[] = ['name', 'description', 'dateCreated', 'actions'];
 
 	loadingDataFromApi: boolean = true;
 

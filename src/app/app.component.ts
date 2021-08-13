@@ -14,9 +14,6 @@ export class AppComponent {
 		private sessionService: SessionService,
 		private router: Router
 	) {
-		if(sessionService.hasActiveSession()) {
-			console.log(this.router.url);
-			router.navigateByUrl("/app");
-		}
+		sessionService.hasActiveSession();
 	}
 }

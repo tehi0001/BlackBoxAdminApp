@@ -19,6 +19,10 @@ export class ProductCategoryService {
 		return this.http.post(Config.apiUrl + "/add-product-category", category, this.sessionService.httpRequestConfig);
 	}
 
+	editProductCategory(id: number, category: any): Observable<any> {
+		return this.http.post(Config.apiUrl + "/edit-product-category/" + id, category, this.sessionService.httpRequestConfig);
+	}
+
 	getCategories(): Observable<any> {
 		return this.http.get(Config.apiUrl + "/product-categories", this.sessionService.httpRequestConfig);
 	}

@@ -65,6 +65,11 @@ const routes: Routes = [
 				component: AddProductCategoryComponent
 			},
 			{
+				path: "product-categories/:id/edit",
+				component: AddProductCategoryComponent,
+				data: {editMode: true}
+			},
+			{
 				path: "orders",
 				component: OrdersComponent
 			},
