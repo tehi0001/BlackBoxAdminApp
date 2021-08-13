@@ -18,4 +18,8 @@ export class ProductCategoryService {
 	addCategory(category: ProductCategoryRequest): Observable<any> {
 		return this.http.post(Config.apiUrl + "/add-product-category", category, this.sessionService.httpRequestConfig);
 	}
+
+	getCategories(): Observable<any> {
+		return this.http.get(Config.apiUrl + "/product-categories", this.sessionService.httpRequestConfig);
+	}
 }

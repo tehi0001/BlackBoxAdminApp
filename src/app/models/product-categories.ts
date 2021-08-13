@@ -1,7 +1,8 @@
 export interface ProductCategory {
-	name: string;
+	id: number;
+	category_name: string;
 	description: string;
-	dateCreated: string;
+	entry_date: string;
 }
 
 export interface ProductCategoryRequest {
