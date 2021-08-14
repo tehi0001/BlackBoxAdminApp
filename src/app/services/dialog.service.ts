@@ -16,8 +16,4 @@ export class DialogService {
 			panelClass: (type == "success") ? "success-message" : "error-message"
 		});
 	}
-
-	showServerErrorMessage(): void {
-		this.notify("An unknown error occurred. Please try again");
-	}
 }

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import {DialogService} from "../services/dialog.service";
+import {SessionService} from "../services/session.service";
 
 @Component({
 	selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
 	constructor(
 		private authService: AuthService,
 		private router: Router,
-		private dialogService: DialogService
+		private dialogService: DialogService,
+		private sessionService: SessionService
 	) {
 		this.authForm = new FormGroup({
 			email: new FormControl('', [Validators.required, Validators.email]),
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
 
 			this.authFormBusy = false
 		}, error => {
-			this.dialogService.showServerErrorMessage();
+			this.sessionService.handleHttpErrors(error);
 			this.authFormBusy = false;
 		})
 	}

@@ -42,7 +42,7 @@ export class ProductCategoriesComponent implements OnInit {
 				this.loadingDataFromApi = false;
 			}
 		}, error => {
-			this.dialogService.showServerErrorMessage();
+			this.sessionService.handleHttpErrors(error);
 		})
 	}
 

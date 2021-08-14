@@ -72,7 +72,7 @@ export class AddProductCategoryComponent implements OnInit {
 				}
 				this.addCategoryFormBusy = false;
 			}, error => {
-				this.dialogService.showServerErrorMessage();
+				this.sessionService.handleHttpErrors(error);
 				this.addCategoryFormBusy = false;
 			})
 		}
@@ -90,7 +90,7 @@ export class AddProductCategoryComponent implements OnInit {
 
 					this.addCategoryFormBusy = false;
 				}, error => {
-					this.dialogService.showServerErrorMessage();
+					this.sessionService.handleHttpErrors(error);
 					this.addCategoryFormBusy = false;
 				})
 			})

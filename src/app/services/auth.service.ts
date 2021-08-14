@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {Config} from "../../config";
 import {AuthRequest} from "../models/auth";
 import {SessionService} from "./session.service";
+import {API_URL} from "../../config";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class AuthService {
 	) { }
 
 	auth(credentials: AuthRequest): Observable<any> {
-		return this.http.post(Config.apiUrl + "/auth", credentials)
+		return this.http.post(API_URL + "/auth", credentials)
 	}
 
 	startSession(token: string) {
