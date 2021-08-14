@@ -17,4 +17,8 @@ export class ProductService {
 	addProduct(product: any) :Observable<any> {
 		return this.http.post(API_URL + "/add-product", product, this.sessionService.httpRequestConfig);
 	}
+
+	getProducts(): Observable<any> {
+		return this.http.get(API_URL + "/products", this.sessionService.httpRequestConfig);
+	}
 }

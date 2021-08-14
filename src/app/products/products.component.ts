@@ -1,39 +1,53 @@
-import { Component, OnInit } from '@angular/core';
-import {ProductCategory} from "../models/product-categories";
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Product} from "../models/products";
+import {DialogService} from "../services/dialog.service";
+import {SessionService} from "../services/session.service";
+import {ProductService} from "../services/product.service";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+	selector: 'app-products',
+	templateUrl: './products.component.html',
+	styleUrls: ['./products.component.scss'],
+	providers: [ProductService]
 })
 export class ProductsComponent implements OnInit {
 
-	dummyData: Product[] = [];
+	// @ts-ignore
+	@ViewChild(MatPaginator) paginator: MatPaginator;
 
+	loadingProductsFromApi: boolean = true;
+
+	// @ts-ignore
 	tableDataSource: MatTableDataSource<Product>
 
-	displayedColumns: string[] = ['sn', 'name', 'description', 'dateCreated', 'actions'];
+	displayedColumns: string[] = ['sn', 'name', 'category', 'description', 'dateCreated', 'actions'];
 
-	constructor() {
-
-		for (let i = 0; i < 10; i++) {
-			let category: Product = {
-				id: i + 100,
-				image: "assets/dummies/product.png",
-				name: "This is a test Product (123 x 234)",
-				price: 200.78,
-				stock: 20
-			}
-
-			this.dummyData.push(category);
-		}
-
-		this.tableDataSource = new MatTableDataSource<Product>(this.dummyData);
+	constructor(
+		private dialogService: DialogService,
+		private sessionService: SessionService,
+		private productService: ProductService
+	) {
+		this.getProducts();
 	}
 
 	ngOnInit(): void {
+	}
+
+	getProducts(): void {
+		this.productService.getProducts().subscribe(response => {
+			response = this.sessionService.renewSessionToken(response);
+
+			if(response.success) {
+				this.tableDataSource = new MatTableDataSource<Product>(response.data);
+				this.tableDataSource.paginator = this.paginator;
+
+				this.loadingProductsFromApi = false;
+			}
+		}, error => {
+			this.sessionService.handleHttpErrors(error);
+		})
 	}
 
 }

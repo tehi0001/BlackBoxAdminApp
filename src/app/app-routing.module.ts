@@ -90,6 +90,11 @@ const routes: Routes = [
 				component: ShippingCostsComponent
 			},
 			{
+				path: "shipping-costs/:id/edit",
+				component: AddShippingCostComponent,
+				data: {editMode: true}
+			},
+			{
 				path: "shipping-costs/add",
 				component: AddShippingCostComponent
 			},

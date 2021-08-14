@@ -1,6 +1,6 @@
 <div class="page-header">
-	<h1>Add Delivery Category</h1>
-	<button mat-raised-button color="warn" routerLink="/app/shipping-costs">
+	<h1>Add Shipping Category</h1>
+	<button mat-raised-button color="warn" routerLink="/app/shipping-costs" [disabled]="shippingCostFormBusy">
 		<mat-icon>close</mat-icon>
 		Cancel
 	</button>
@@ -8,26 +8,32 @@
 
 <mat-card class="margin-top-3">
 	<div class="add-form">
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Category name</mat-label>
-			<input type="text" matInput>
-		</mat-form-field>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Description</mat-label>
-			<input type="text" matInput>
-		</mat-form-field>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Conditions</mat-label>
-			<input type="text" matInput>
-		</mat-form-field>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Cost</mat-label>
-			<input type="text" matInput>
-		</mat-form-field>
-		<div class="margin-top-1">
-			<button mat-raised-button color="primary" class="full-width">
-				Save
-			</button>
-		</div>
+		<form [formGroup]="shippingCostForm" (submit)="save()">
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Category name</mat-label>
+				<input type="text" matInput formControlName="name">
+				<mat-hint>(e.g. Next Day)</mat-hint>
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width margin-top-1">
+				<mat-label>Description</mat-label>
+				<input type="text" matInput formControlName="description">
+				<mat-hint>(e.g. Delivered next business day)</mat-hint>
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width margin-top-1">
+				<mat-label>Conditions (optional)</mat-label>
+				<input type="text" matInput formControlName="conditions">
+				<mat-hint>(e.g. Order by 12 noon, Mon - Fri)</mat-hint>
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width margin-top-1">
+				<mat-label>Cost</mat-label>
+				<input type="number" min="0" matInput formControlName="cost">
+			</mat-form-field>
+			<div class="margin-top-1">
+				<button mat-raised-button color="primary" class="full-width" [disabled]="shippingCostForm.invalid || shippingCostFormBusy">
+					<span *ngIf="!shippingCostFormBusy">Save</span>
+					<mat-spinner diameter="20" *ngIf="shippingCostFormBusy"></mat-spinner>
+				</button>
+			</div>
+		</form>
 	</div>
 </mat-card>

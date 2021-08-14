@@ -100,7 +100,7 @@ export class AddProductComponent implements OnInit {
 		reader.onload = () => {
 			let result = reader.result;
 			if(this.productImages.includes(result)) {
-				this.dialogService.notify("Selected image is already added");
+				this.dialogService.notify("Selected picture is already added");
 			}
 			else {
 				this.productImages.push(result);

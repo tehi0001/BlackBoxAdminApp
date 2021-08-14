@@ -35,8 +35,6 @@ export class AddProductCategoryComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-
-
 		this.route.data.subscribe(data => {
 			if(data.editMode) {
 				this.formSaveMode = "edit";
@@ -81,7 +79,7 @@ export class AddProductCategoryComponent implements OnInit {
 				this.categoryService.editProductCategory(params.id, this.addCategoryForm.value).subscribe(response => {
 					response = this.sessionService.renewSessionToken(response);
 					if(response.success) {
-						this.dialogService.notify("Category successfully edited", "success");
+						this.dialogService.notify("Product category successfully updated", "success");
 						this.router.navigateByUrl("/app/product-categories");
 					}
 					else {
