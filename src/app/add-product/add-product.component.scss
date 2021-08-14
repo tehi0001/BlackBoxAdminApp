@@ -8,20 +8,33 @@
 		margin-right: 7em;
 
 		.product-img-lg {
+			position: relative;
 
 			img {
-				max-width: 400px;
+				width: 400px;
+				max-height: 500px;
+			}
+
+			button {
+				position: absolute;
+				top: 1.5em;
+				right: 1.5em;
 			}
 		}
 
 		.thumbnails {
 			display: flex;
 			align-items: center;
+
 			.product-thumbnail {
 				padding: .6em;
 				box-shadow: 0 0 2px gray;
 				border-radius: 5px;
 				margin-right: 1em;
+
+				&.selected {
+					background: $light-gray;
+				}
 
 				img {
 					height: 55px;
@@ -36,6 +49,13 @@
 				justify-content: center;
 				align-items: center;
 				flex-direction: column;
+				background: $light-gray;
+
+				mat-icon {
+					font-size: 40px;
+					padding-right: 1em;
+					padding-bottom: 1em;
+				}
 			}
 		}
 	}

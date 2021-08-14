@@ -9,15 +9,19 @@
 <mat-card class="add-product margin-top-3">
 	<div class="product-images">
 		<div class="product-img-lg">
-			<img src="assets/dummies/product_large@2x.png">
+			<img [src]="productImages.length > 0 ? productImages[selectedProductImageIndex] : 'assets/images/default_product.png'">
+			<button mat-mini-fab *ngIf="productImages.length > 0" (click)="deleteSelectedProductImage()">
+				<mat-icon>delete</mat-icon>
+			</button>
 		</div>
 		<div class="thumbnails margin-top-2">
-			<div class="product-thumbnail">
-				<img src="assets/dummies/product.png">
+			<div class="product-thumbnail clickable" *ngFor="let productImg of productImages; let i = index" (click)="selectedProductImageIndex = i" [ngClass]="{selected: selectedProductImageIndex == i}">
+				<img [src]="productImg">
 			</div>
-			<button class="add-img-btn">
+			<input id="file-upload" type="file" accept="image/*" hidden (change)="addProductImage($event)">
+			<label for="file-upload" class="add-img-btn clickable">
 				<mat-icon>add</mat-icon>
-			</button>
+			</label>
 		</div>
 	</div>
 	<div class="add-form">

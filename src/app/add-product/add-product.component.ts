@@ -19,6 +19,10 @@ export class AddProductComponent implements OnInit {
 
 	productProperties: ProductProperty[] = [];
 
+	productImages: any[] = [];
+
+	selectedProductImageIndex: number = 0;
+
 	loadingProductCategories: boolean = true;
 
 	addProductForm: FormGroup;
@@ -86,4 +90,24 @@ export class AddProductComponent implements OnInit {
 		})
 	}
 
+	addProductImage($event: any): void {
+		let reader = new FileReader();
+		reader.onload = () => {
+			let result = reader.result;
+			if(this.productImages.includes(result)) {
+				this.dialogService.notify("Selected image is already added");
+			}
+			else {
+				this.productImages.push(result);
+			}
+		}
+
+		reader.readAsDataURL($event.target.files[0]);
+	}
+
+	deleteSelectedProductImage(): void {
+		this.productImages.splice(this.selectedProductImageIndex, 1);
+
+		this.selectedProductImageIndex = 0;
+	}
 }
