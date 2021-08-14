@@ -6,11 +6,13 @@ import {ProductCategory} from "../models/product-categories";
 import {SessionService} from "../services/session.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductProperty} from "../models/products";
+import {ProductService} from "../services/product.service";
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.scss']
+	selector: 'app-add-product',
+	templateUrl: './add-product.component.html',
+	styleUrls: ['./add-product.component.scss'],
+	providers: [ProductCategoryService, ProductService]
 })
 export class AddProductComponent implements OnInit {
 
@@ -29,11 +31,14 @@ export class AddProductComponent implements OnInit {
 
 	showAddPropertyForm: boolean = false;
 
+	addProductFormBusy: boolean = false;
+
 	constructor(
 		private dialogService: DialogService,
 		private categoryService: ProductCategoryService,
 		private sessionService: SessionService,
-		private router: Router
+		private router: Router,
+		private productService: ProductService
 	) {
 		this.addProductForm = new FormGroup({
 			category: new FormControl('', [Validators.required]),
@@ -109,5 +114,30 @@ export class AddProductComponent implements OnInit {
 		this.productImages.splice(this.selectedProductImageIndex, 1);
 
 		this.selectedProductImageIndex = 0;
+	}
+
+	saveProduct():void {
+		this.addProductFormBusy = true;
+		let product = this.addProductForm.value;
+		product.properties = this.productProperties;
+		product.images = this.productImages;
+
+		this.productService.addProduct(product).subscribe(response => {
+			response = this.sessionService.renewSessionToken(response);
+
+			if(response.success) {
+				this.dialogService.notify("Product successfully added", "success");
+				this.router.navigateByUrl("/app/products");
+			}
+			else {
+				this.dialogService.notify(response.message);
+			}
+
+			this.addProductFormBusy = false;
+
+		}, error => {
+			this.sessionService.handleHttpErrors(error);
+			this.addProductFormBusy = false;
+		})
 	}
 }

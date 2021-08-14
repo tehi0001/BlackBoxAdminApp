@@ -25,7 +25,7 @@
 		</div>
 	</div>
 	<div class="add-form">
-		<form [formGroup]="addProductForm">
+		<form [formGroup]="addProductForm" (submit)="saveProduct()">
 			<mat-form-field appearance="outline" class="full-width">
 				<mat-label>Product category</mat-label>
 				<mat-select formControlName="category">
@@ -45,15 +45,15 @@
 			</mat-form-field>
 			<mat-form-field appearance="outline" class="full-width">
 				<mat-label>Price</mat-label>
-				<input type="text" matInput formControlName="price">
+				<input type="number" min="0" matInput formControlName="price">
 			</mat-form-field>
 			<mat-form-field appearance="outline" class="full-width">
 				<mat-label>Discount (%)</mat-label>
-				<input type="text" matInput formControlName="discount">
+				<input type="number" max="100" matInput formControlName="discount">
 			</mat-form-field>
 			<mat-form-field appearance="outline" class="full-width">
 				<mat-label>Stock</mat-label>
-				<input type="text" matInput formControlName="stock">
+				<input type="number" matInput formControlName="stock">
 			</mat-form-field>
 			<mat-form-field appearance="outline" class="full-width">
 				<mat-label>Description</mat-label>
@@ -94,7 +94,10 @@
 				</table>
 			</div>
 			<div class="margin-top-3">
-				<button mat-raised-button class="full-width" color="primary" type="submit">SAVE PRODUCT</button>
+				<button mat-raised-button class="full-width" color="primary" type="submit" [disabled]="addProductForm.invalid || addProductFormBusy">
+					<span *ngIf="!addProductFormBusy">SAVE PRODUCT</span>
+					<mat-spinner diameter="20" *ngIf="addProductFormBusy"></mat-spinner>
+				</button>
 			</div>
 		</form>
 	</div>

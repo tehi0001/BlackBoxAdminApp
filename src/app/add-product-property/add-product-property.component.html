@@ -19,11 +19,14 @@
 	<mat-form-field appearance="fill" *ngIf="propType.value == 'other'">
 		<mat-label>Property name</mat-label>
 		<input matInput formControlName="name">
+		<mat-hint>(e.g. Color)</mat-hint>
 	</mat-form-field>
 
 	<mat-form-field appearance="fill">
 		<mat-label>Property value</mat-label>
 		<input matInput formControlName="value">
+		<mat-hint *ngIf="propType.value == 'dimension'">(e.g. 20cm)</mat-hint>
+		<mat-hint *ngIf="propType.value == 'other'">(e.g. Green)</mat-hint>
 	</mat-form-field>
 
 	<div style="padding-top: .6em">
