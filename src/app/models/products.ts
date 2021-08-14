@@ -5,3 +5,9 @@ export interface Product {
 	price: number;
 	stock: number;
 }
+
+export interface ProductProperty {
+	type: string;
+	name: string;
+	value: string;
+}

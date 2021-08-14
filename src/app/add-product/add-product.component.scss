@@ -58,6 +58,19 @@
 				}
 			}
 
+			.add-product-property {
+				box-shadow: 0 0 3px $dark-gray;
+				padding: 1em;
+				.add-header {
+
+					h3 {
+						margin: 0;
+						font-weight: 500;
+						font-size: 18px;
+					}
+				}
+			}
+
 			.property-table {
 				width: 100%;
 				border-collapse: collapse;

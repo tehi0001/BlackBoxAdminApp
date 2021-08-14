@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {DialogService} from "../services/dialog.service";
+import {ProductCategoryService} from "../services/product-category.service";
+import {Router} from "@angular/router";
+import {ProductCategory} from "../models/product-categories";
+import {SessionService} from "../services/session.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ProductProperty} from "../models/products";
 
 @Component({
   selector: 'app-add-product',
@@ -7,9 +14,76 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor() { }
+	// @ts-ignore
+	productCategories: ProductCategory[];
 
-  ngOnInit(): void {
-  }
+	productProperties: ProductProperty[] = [];
+
+	loadingProductCategories: boolean = true;
+
+	addProductForm: FormGroup;
+
+	showAddPropertyForm: boolean = false;
+
+	constructor(
+		private dialogService: DialogService,
+		private categoryService: ProductCategoryService,
+		private sessionService: SessionService,
+		private router: Router
+	) {
+		this.addProductForm = new FormGroup({
+			category: new FormControl('', [Validators.required]),
+			name: new FormControl('', [Validators.required]),
+			manufacturer: new FormControl('', [Validators.required]),
+			price: new FormControl('', [Validators.required]),
+			discount: new FormControl('', [Validators.required]),
+			stock: new FormControl('', [Validators.required]),
+			description: new FormControl('', [Validators.required])
+		})
+	}
+
+	ngOnInit(): void {
+		this.getProductCategories();
+	}
+
+	getProductCategories() {
+		this.categoryService.getCategories().subscribe(response => {
+			response = this.sessionService.renewSessionToken(response);
+			if(response.success) {
+				this.productCategories = response.data;
+				this.loadingProductCategories = false;
+			}
+		}, error => {
+			this.sessionService.handleHttpErrors(error);
+		})
+	}
+
+	addProductProperty(property: ProductProperty): void {
+		let addSuccessful: boolean = true;
+		this.productProperties.forEach(prop => {
+			if((prop.type == 'dimension' && property.type == 'dimension') && (prop.name == property.name)) {
+				this.dialogService.notify(property.name + " property already added to product")
+				addSuccessful = false;
+			}
+			else if(prop.name == property.name && prop.value == property.value) {
+				this.dialogService.notify(property.name + " " + property.value + " property already added to product")
+				addSuccessful = false;
+			}
+		})
+
+		if(addSuccessful) {
+			this.productProperties.push(property);
+		}
+
+		this.showAddPropertyForm = false;
+	}
+
+	deleteProductProperty(property: ProductProperty): void {
+		this.productProperties.forEach((prop, index) => {
+			if(prop.type == property.type && prop.name == property.name && prop.value == property.value) {
+				this.productProperties.splice(index, 1);
+			}
+		})
+	}
 
 }

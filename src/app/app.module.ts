@@ -29,6 +29,7 @@ import {DialogService} from "./services/dialog.service";
 import {HttpClientModule} from "@angular/common/http";
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatDialog} from "@angular/material/dialog";
+import { AddProductPropertyComponent } from './add-product-property/add-product-property.component';
 
 @NgModule({
 	declarations: [
@@ -51,7 +52,8 @@ import {MatDialog} from "@angular/material/dialog";
 		ViewOrderComponent,
 		AddShippingCostComponent,
 		ViewCustomerComponent,
-  		ConfirmDialogComponent
+  		ConfirmDialogComponent,
+    AddProductPropertyComponent
 	],
 	imports: [
 		BrowserModule,

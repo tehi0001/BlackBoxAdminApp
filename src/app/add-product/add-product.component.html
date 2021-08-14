@@ -21,61 +21,77 @@
 		</div>
 	</div>
 	<div class="add-form">
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Product category</mat-label>
-			<mat-select>
-				<mat-option *ngFor="let i of [1,2,3,4,5,6,7]" [value]="i">
-					Category {{i}}
-				</mat-option>
-			</mat-select>
-		</mat-form-field>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Product name</mat-label>
-			<input type="text" matInput>
-		</mat-form-field>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Manufacturer</mat-label>
-			<input type="text" matInput>
-		</mat-form-field>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Price</mat-label>
-			<input type="text" matInput>
-		</mat-form-field>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Discount (%)</mat-label>
-			<input type="text" matInput>
-		</mat-form-field>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Stock</mat-label>
-			<input type="text" matInput>
-		</mat-form-field>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Description</mat-label>
-			<textarea rows="7" matInput></textarea>
-		</mat-form-field>
+		<form [formGroup]="addProductForm">
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Product category</mat-label>
+				<mat-select formControlName="category">
+					<mat-option *ngFor="let category of productCategories" [value]="category?.id">
+						{{category?.category_name}}
+					</mat-option>
+				</mat-select>
+				<mat-spinner diameter="15" matPrefix style="margin-bottom: .3em" *ngIf="loadingProductCategories"></mat-spinner>
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Product name</mat-label>
+				<input type="text" matInput formControlName="name">
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Manufacturer</mat-label>
+				<input type="text" matInput formControlName="manufacturer">
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Price</mat-label>
+				<input type="text" matInput formControlName="price">
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Discount (%)</mat-label>
+				<input type="text" matInput formControlName="discount">
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Stock</mat-label>
+				<input type="text" matInput formControlName="stock">
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Description</mat-label>
+				<textarea rows="7" matInput formControlName="description"></textarea>
+			</mat-form-field>
 
-		<div class="product-properties">
-			<div class="header">
-				<h3>Product Properties</h3>
-				<button mat-stroked-button color="primary">ADD PROPERTY</button>
+			<div class="product-properties">
+				<div class="header" *ngIf="!showAddPropertyForm">
+					<h3>Product Properties</h3>
+					<button mat-stroked-button color="primary" type="button" (click)="showAddPropertyForm = true">ADD PROPERTY</button>
+				</div>
+				<div class="add-product-property" *ngIf="showAddPropertyForm">
+					<div class="add-header flex space-between items-center">
+						<h3>Add Property</h3>
+						<button mat-icon-button type="button" (click)="showAddPropertyForm = false">
+							<mat-icon>close</mat-icon>
+						</button>
+					</div>
+					<div class="margin-top-2">
+						<app-add-product-property (done)="addProductProperty($event)"></app-add-product-property>
+					</div>
+				</div>
+				<table class="property-table margin-top-half">
+					<tr>
+						<th>Property Type</th>
+						<th>Property Name</th>
+						<th>Value</th>
+						<th class="align-right">Action</th>
+					</tr>
+					<tr *ngFor="let productProperty of productProperties">
+						<td>{{productProperty?.type | titlecase}}</td>
+						<td>{{productProperty?.name | titlecase}}</td>
+						<td>{{productProperty?.value | titlecase}}</td>
+						<td class="align-right">
+							<mat-icon class="clickable" (click)="deleteProductProperty(productProperty)">delete</mat-icon>
+						</td>
+					</tr>
+				</table>
 			</div>
-			<table class="property-table margin-top-half">
-				<tr>
-					<th>Property Name</th>
-					<th>Value</th>
-					<th class="align-right">Action</th>
-				</tr>
-				<tr *ngFor="let i of [1,2,3,4,5]">
-					<td>Color</td>
-					<td>Green</td>
-					<td class="align-right">
-						<mat-icon class="clickable">delete</mat-icon>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="margin-top-3">
-			<button mat-raised-button class="full-width" color="primary">SAVE PRODUCT</button>
-		</div>
+			<div class="margin-top-3">
+				<button mat-raised-button class="full-width" color="primary" type="submit">SAVE PRODUCT</button>
+			</div>
+		</form>
 	</div>
 </mat-card>

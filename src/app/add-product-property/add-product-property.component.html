@@ -1,0 +1,32 @@
+<form [formGroup]="addPropertyForm" class="add-property-form" (submit)="save()">
+	<mat-form-field appearance="fill">
+		<mat-label>Property type</mat-label>
+		<mat-select #propType formControlName="type">
+			<mat-option value="dimension">Dimension</mat-option>
+			<mat-option value="other">Other</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field appearance="fill" *ngIf="propType.value == 'dimension'">
+		<mat-label>Property name</mat-label>
+		<mat-select formControlName="name">
+			<mat-option value="Height">Height</mat-option>
+			<mat-option value="Width">Width</mat-option>
+			<mat-option value="Depth">Depth</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field appearance="fill" *ngIf="propType.value == 'other'">
+		<mat-label>Property name</mat-label>
+		<input matInput formControlName="name">
+	</mat-form-field>
+
+	<mat-form-field appearance="fill">
+		<mat-label>Property value</mat-label>
+		<input matInput formControlName="value">
+	</mat-form-field>
+
+	<div style="padding-top: .6em">
+		<button mat-raised-button color="primary" type="submit" [disabled]="addPropertyForm.invalid">Save</button>
+	</div>
+</form>
