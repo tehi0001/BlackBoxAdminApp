@@ -1,0 +1,15 @@
+@import "src/theme";
+
+.warn-icon {
+
+	mat-icon {
+		color: $warn;
+		font-size: 80px;
+		padding-right: 1em;
+	}
+}
+
+.main-message {
+	font-weight: 500;
+	margin-top: 1em;
+}

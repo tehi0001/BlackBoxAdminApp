@@ -27,6 +27,20 @@ a, a[routerLink] {
 }
 
 
+//Layouts
+
+.flex {
+	display: flex;
+
+	&.space-between {
+		justify-content: space-between;
+	}
+
+	&.items-center {
+		align-items: center;
+	}
+}
+
 
 //Alignments
 
@@ -84,6 +98,10 @@ a, a[routerLink] {
 
 .text-primary {
 	color: $primary;
+}
+
+.text-warn {
+	color: $warn;
 }
 
 button {

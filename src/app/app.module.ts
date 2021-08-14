@@ -27,6 +27,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {SessionService} from "./services/session.service";
 import {DialogService} from "./services/dialog.service";
 import {HttpClientModule} from "@angular/common/http";
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import {MatDialog} from "@angular/material/dialog";
 
 @NgModule({
 	declarations: [
@@ -48,7 +50,8 @@ import {HttpClientModule} from "@angular/common/http";
 		ViewProductComponent,
 		ViewOrderComponent,
 		AddShippingCostComponent,
-		ViewCustomerComponent
+		ViewCustomerComponent,
+  		ConfirmDialogComponent
 	],
 	imports: [
 		BrowserModule,
@@ -59,6 +62,7 @@ import {HttpClientModule} from "@angular/common/http";
 		HttpClientModule
 	],
 	providers: [SessionService, DialogService],
+	entryComponents: [ConfirmDialogComponent],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

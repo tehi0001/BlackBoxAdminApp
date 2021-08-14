@@ -26,4 +26,8 @@ export class ProductCategoryService {
 	getCategories(): Observable<any> {
 		return this.http.get(API_URL + "/product-categories", this.sessionService.httpRequestConfig);
 	}
+
+	deleteCategory(id: number): Observable<any> {
+		return this.http.post(API_URL + "/delete-product-category", {id: id}, this.sessionService.httpRequestConfig);
+	}
 }

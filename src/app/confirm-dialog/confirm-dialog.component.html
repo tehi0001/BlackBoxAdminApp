@@ -1,0 +1,11 @@
+<div class="warn-icon align-center">
+	<mat-icon>warning</mat-icon>
+</div>
+
+<h2 class="main-message align-center">{{data?.mainMessage}}</h2>
+<h3 class="sub-message align-center text-warn">{{data.subMessage}}</h3>
+
+<div class="flex space-between items-center margin-top-2">
+	<button mat-raised-button color="primary" mat-dialog-close cdkFocusInitial>No</button>
+	<button mat-raised-button color="warn" [mat-dialog-close]="true">Yes</button>
+</div>

@@ -29,10 +29,10 @@ export class ProductCategoriesComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.getTransactions();
+		this.getCategories();
 	}
 
-	getTransactions(): void {
+	getCategories(): void {
 		this.categoryService.getCategories().subscribe(response => {
 			response = this.sessionService.renewSessionToken(response);
 
@@ -43,6 +43,23 @@ export class ProductCategoriesComponent implements OnInit {
 			}
 		}, error => {
 			this.sessionService.handleHttpErrors(error);
+		})
+	}
+
+	deleteCategory(id: number, name: string): void {
+		this.dialogService.confirm("Are you sure you want to delete " + name + "?", "Note that this action cannot be reversed").subscribe(() => {
+			this.loadingDataFromApi = true;
+
+			this.categoryService.deleteCategory(id).subscribe(response => {
+				response = this.sessionService.renewSessionToken(response);
+				if(response.success) {
+					this.dialogService.notify(name + " was successfully deleted", "success");
+					this.getCategories();
+				}
+			}, error => {
+				this.sessionService.handleHttpErrors(error);
+				this.loadingDataFromApi = false;
+			})
 		})
 	}
 
