@@ -15,8 +15,8 @@ export class AddProductPropertyComponent implements OnInit {
 
 	constructor() {
 		this.addPropertyForm = new FormGroup({
-			type: new FormControl('dimension', [Validators.required]),
-			name: new FormControl('', [Validators.required]),
+			property_type: new FormControl('dimension', [Validators.required]),
+			property_name: new FormControl('', [Validators.required]),
 			value: new FormControl('', [Validators.required])
 		});
 	}

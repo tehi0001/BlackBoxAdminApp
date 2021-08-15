@@ -57,6 +57,11 @@ const routes: Routes = [
 				component: ViewProductComponent
 			},
 			{
+				path: "products/:id/edit",
+				component: AddProductComponent,
+				data: {editMode: true}
+			},
+			{
 				path: "product-categories",
 				component: ProductCategoriesComponent
 			},

@@ -8,7 +8,7 @@ export interface Product {
 }
 
 export interface ProductProperty {
-	type: string;
-	name: string;
+	property_type: string;
+	property_name: string;
 	value: string;
 }

@@ -1,15 +1,87 @@
 import { Component, OnInit } from '@angular/core';
+import {SessionService} from "../services/session.service";
+import {ProductService} from "../services/product.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'app-view-product',
-  templateUrl: './view-product.component.html',
-  styleUrls: ['./view-product.component.scss']
+	selector: 'app-view-product',
+	templateUrl: './view-product.component.html',
+	styleUrls: ['./view-product.component.scss'],
+	providers: [ProductService]
 })
 export class ViewProductComponent implements OnInit {
 
-  constructor() { }
+	product: any;
 
-  ngOnInit(): void {
-  }
+	loadingDataFromApi: boolean = true;
 
+	enlargedImageIndex: number = 0;
+
+	productProperties: any = {
+		dimensions: [],
+		others: []
+	}
+
+	constructor(
+		private sessionService: SessionService,
+		private productService: ProductService,
+		private route: ActivatedRoute
+	) { }
+
+	ngOnInit(): void {
+		this.route.params.subscribe(param => {
+			this.productService.viewProduct(param.id).subscribe(response => {
+				response = this.sessionService.renewSessionToken(response);
+
+				if(response.success) {
+					this.product = response.data;
+
+					// @ts-ignore
+					this.product.properties.forEach(prop => {
+						if(prop.property_type == 'dimension') {
+							this.productProperties.dimensions.push(prop);
+						}
+						else {
+							this.productProperties.others.push(prop);
+						}
+					});
+
+					this.groupProductProperties();
+				}
+
+				this.loadingDataFromApi = false;
+			}, error => {
+				this.sessionService.handleHttpErrors(error);
+				this.loadingDataFromApi = false;
+			})
+		})
+	}
+
+	groupProductProperties(): void {
+		let uniquePropNames: string[] = [];
+
+		let groupedProps: any[] = [];
+
+		// @ts-ignore
+		this.productProperties.others.forEach(prop => {
+			if(!uniquePropNames.includes(prop.property_name)) {
+				uniquePropNames.push(prop.property_name);
+				groupedProps.push({
+					property_name: prop.property_name,
+					values: []
+				});
+			}
+		})
+
+		groupedProps.forEach(group => {
+			// @ts-ignore
+			this.productProperties.others.forEach((prop, index) => {
+				if(group.property_name == prop.property_name) {
+					groupedProps[index]?.values.push(prop.value);
+				}
+			})
+		})
+
+		this.productProperties.others = groupedProps;
+	}
 }

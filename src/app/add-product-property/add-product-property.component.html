@@ -1,7 +1,7 @@
 <form [formGroup]="addPropertyForm" class="add-property-form" (submit)="save()">
 	<mat-form-field appearance="fill">
 		<mat-label>Property type</mat-label>
-		<mat-select #propType formControlName="type">
+		<mat-select #propType formControlName="property_type">
 			<mat-option value="dimension">Dimension</mat-option>
 			<mat-option value="other">Other</mat-option>
 		</mat-select>
@@ -9,7 +9,7 @@
 
 	<mat-form-field appearance="fill" *ngIf="propType.value == 'dimension'">
 		<mat-label>Property name</mat-label>
-		<mat-select formControlName="name">
+		<mat-select formControlName="property_name">
 			<mat-option value="Height">Height</mat-option>
 			<mat-option value="Width">Width</mat-option>
 			<mat-option value="Depth">Depth</mat-option>
@@ -18,7 +18,7 @@
 
 	<mat-form-field appearance="fill" *ngIf="propType.value == 'other'">
 		<mat-label>Property name</mat-label>
-		<input matInput formControlName="name">
+		<input matInput formControlName="property_name">
 		<mat-hint>(e.g. Color)</mat-hint>
 	</mat-form-field>
 

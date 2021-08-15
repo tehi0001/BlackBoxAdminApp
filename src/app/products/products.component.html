@@ -49,7 +49,7 @@
 			<ng-container matColumnDef="actions">
 				<th mat-header-cell *matHeaderCellDef style="text-align: right"> Actions </th>
 				<td mat-cell *matCellDef="let product" class="align-right">
-					<button mat-icon-button routerLink="/app/products/1234"><mat-icon>launch</mat-icon></button>
+					<button mat-icon-button routerLink="/app/products/{{product?.id}}"><mat-icon>launch</mat-icon></button>
 				</td>
 			</ng-container>
 

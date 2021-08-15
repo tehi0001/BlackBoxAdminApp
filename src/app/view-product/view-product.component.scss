@@ -12,7 +12,7 @@
 			.product-img-lg {
 
 				img {
-					max-width: 400px;
+					width: 400px;
 				}
 			}
 
@@ -20,11 +20,16 @@
 				display: flex;
 				align-items: center;
 				flex-wrap: wrap;
+
 				.product-thumbnail {
 					padding: .6em;
 					box-shadow: 0 0 2px gray;
 					border-radius: 5px;
 					margin-right: 1em;
+
+					&.selected {
+						background: $light-gray;
+					}
 
 					img {
 						height: 55px;
@@ -55,22 +60,28 @@
 				.property {
 					display: flex;
 					align-items: center;
-					margin-top: .5em;
+					margin-top: 1em;
 
 					.property-name {
 						margin-right: 2em;
 						font-weight: 500;
 					}
-				}
-			}
 
-			.shipping-info {
-				display: flex;
-				align-items: center;
-				font-size: 16px;
+					.property-values {
 
-				mat-icon {
-					margin-right: .5em;
+						span {
+							margin-right: .5em;
+
+							&:before {
+								content: '|';
+								margin-right: .5em;
+							}
+
+							&:first-child:before {
+								content: none;
+							}
+						}
+					}
 				}
 			}
 		}

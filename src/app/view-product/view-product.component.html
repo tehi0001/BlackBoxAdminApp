@@ -7,119 +7,122 @@
 </div>
 
 <mat-card class="view-product margin-top-3">
-	<div class="product-info">
-		<div class="product-images">
-			<div class="product-img-lg">
-				<img src="assets/dummies/product_large@2x.png">
-			</div>
-			<div class="thumbnails margin-top-2">
-				<div class="product-thumbnail" *ngFor="let i of [1,2,3,4]">
-					<img src="assets/dummies/product.png">
-				</div>
-			</div>
-		</div>
-		<div class="product-details">
-			<h1>This is a test of the product information</h1>
-			<div class="margin-top-1">Category</div>
-			<div class="margin-top-1 text-primary">Manufacturer</div>
-			<div style="display: flex; align-items: center;" class="margin-top-2">
-				<div class="price">R299.99</div>
-				<div class="stock-count">200 in stock</div>
-			</div>
-			<div class="margin-top-2 properties">
-				<div class="property">
-					<div class="property-name">COLOR</div>
-					<div class="property-values">Blue | Green | Red</div>
-				</div>
-				<div class="property">
-					<div class="property-name">DIMENSION</div>
-					<div class="property-values">Height: 200 | Width: 200 | Depth: 300</div>
-				</div>
-			</div>
-			<div class="shipping-info margin-top-2">
-				<mat-icon>local_shipping</mat-icon>
-				<div>Free shipping nationwide</div>
-			</div>
-			<div class="margin-top-2">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id lobortis sapien.
-				Praesent ut enim sit amet eros consequat porta. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-				Phasellus quis quam massa. Phasellus ipsum massa, facilisis nec lobortis non, scelerisque vel magna
-			</div>
-			<div class="margin-top-3" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3em">
-				<button mat-raised-button color="primary" class="full-width">
-					EDIT THIS PRODUCT
-				</button>
-				<button mat-raised-button color="warn" class="full-width">
-					DELETE THIS PRODUCT
-				</button>
-			</div>
-		</div>
+	<div *ngIf="loadingDataFromApi">
+		<mat-spinner class="loader" diameter="40"></mat-spinner>
 	</div>
-	<div class="margin-top-4">
-		<h1>Ratings & Reviews</h1>
-
-		<div class="ratings-reviews">
-			<div class="ratings">
-				<div class="rating-stars">
-					<mat-icon *ngFor="let i of [1,2,3]">star</mat-icon>
-					<mat-icon *ngFor="let i of [1,2]">star_border</mat-icon>
-					<h1>4.2</h1>
+	<div [hidden]="loadingDataFromApi">
+		<div class="product-info">
+			<div class="product-images">
+				<div class="product-img-lg">
+					<img [src]="product?.images.length == 0 ? 'assets/images/default_product.png' : product?.images[enlargedImageIndex].image">
 				</div>
-				<div class="margin-top-1">
-					1,234 Reviews
-				</div>
-				<div class="margin-top-3 rating-bars">
-					<div class="bar">
-						<div>5 Stars</div>
-						<div class="bar-bg">
-							<div class="bar-value" style="width: 60%"></div>
-						</div>
-						<div>60%</div>
-					</div>
-					<div class="bar">
-						<div>4 Stars</div>
-						<div class="bar-bg">
-							<div class="bar-value" style="width: 12%"></div>
-						</div>
-						<div>60%</div>
-					</div>
-					<div class="bar">
-						<div>3 Stars</div>
-						<div class="bar-bg">
-							<div class="bar-value" style="width: 40%"></div>
-						</div>
-						<div>60%</div>
-					</div>
-					<div class="bar">
-						<div>2 Stars</div>
-						<div class="bar-bg">
-							<div class="bar-value" style="width: 30%"></div>
-						</div>
-						<div>60%</div>
-					</div>
-					<div class="bar">
-						<div>1 Star &nbsp;</div>
-						<div class="bar-bg">
-							<div class="bar-value" style="width: 65%"></div>
-						</div>
-						<div>60%</div>
+				<div class="thumbnails margin-top-2">
+					<div class="product-thumbnail clickable" *ngFor="let image of product?.images; let i = index;" (click)="enlargedImageIndex = i" [ngClass]="{selected: enlargedImageIndex == i}">
+						<img src="{{image.image}}">
 					</div>
 				</div>
 			</div>
-			<div class="reviews">
-				<div class="review" *ngFor="let i of [1,2,3]">
-					<div class="header">
-						<h1 class="poster">John Doe</h1>
-						<div class="date">21/07/2021</div>
+			<div class="product-details">
+				<h1>{{product?.product_name}}</h1>
+				<div class="margin-top-1">{{product?.category_name}}</div>
+				<div class="margin-top-1 text-primary">{{product?.manufacturer}}</div>
+				<div style="display: flex; align-items: center;" class="margin-top-2">
+					<div class="price">{{product?.price | currency:"ZAR":"symbol-narrow"}}</div>
+					<div class="stock-count">{{product?.stock}} in stock</div>
+				</div>
+				<div class="margin-top-2 properties">
+					<div class="property" *ngFor="let property of productProperties?.others">
+						<div class="property-name">{{property?.property_name | uppercase}}</div>
+						<div class="property-values">
+							<span *ngFor="let value of property?.values">{{value}}</span>
+						</div>
 					</div>
-					<div class="text margin-top-1">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id lobortis sapien.
-						Praesent ut enim sit amet eros consequat porta. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-						Phasellus quis quam massa. Phasellus ipsum massa, facilisis nec lobortis non, scelerisque vel magna
+					<div class="property" *ngIf="productProperties.dimensions.length > 0">
+						<div class="property-name">DIMENSIONS</div>
+						<div class="property-values">
+							<span *ngFor="let property of productProperties.dimensions">{{property.property_name}}: {{property.value}}</span>
+						</div>
 					</div>
 				</div>
-				<div class="margin-top-2 align-right">
-					<a routerLink="/app/products">View All Reviews</a>
+				<div class="margin-top-2">
+					{{product?.description}}
+				</div>
+				<div class="margin-top-3" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3em">
+					<button mat-raised-button color="primary" class="full-width" routerLink="/app/products/{{product?.id}}/edit">
+						EDIT THIS PRODUCT
+					</button>
+					<button mat-raised-button color="warn" class="full-width">
+						DELETE THIS PRODUCT
+					</button>
+				</div>
+			</div>
+		</div>
+		<div style="margin-top: 6em">
+			<h1>Ratings & Reviews</h1>
+
+			<div class="ratings-reviews">
+				<div class="ratings">
+					<div class="rating-stars">
+						<mat-icon *ngFor="let i of [1,2,3]">star</mat-icon>
+						<mat-icon *ngFor="let i of [1,2]">star_border</mat-icon>
+						<h1>4.2</h1>
+					</div>
+					<div class="margin-top-1">
+						1,234 Reviews
+					</div>
+					<div class="margin-top-3 rating-bars">
+						<div class="bar">
+							<div>5 Stars</div>
+							<div class="bar-bg">
+								<div class="bar-value" style="width: 60%"></div>
+							</div>
+							<div>60%</div>
+						</div>
+						<div class="bar">
+							<div>4 Stars</div>
+							<div class="bar-bg">
+								<div class="bar-value" style="width: 12%"></div>
+							</div>
+							<div>60%</div>
+						</div>
+						<div class="bar">
+							<div>3 Stars</div>
+							<div class="bar-bg">
+								<div class="bar-value" style="width: 40%"></div>
+							</div>
+							<div>60%</div>
+						</div>
+						<div class="bar">
+							<div>2 Stars</div>
+							<div class="bar-bg">
+								<div class="bar-value" style="width: 30%"></div>
+							</div>
+							<div>60%</div>
+						</div>
+						<div class="bar">
+							<div>1 Star &nbsp;</div>
+							<div class="bar-bg">
+								<div class="bar-value" style="width: 65%"></div>
+							</div>
+							<div>60%</div>
+						</div>
+					</div>
+				</div>
+				<div class="reviews">
+					<div class="review" *ngFor="let i of [1,2,3]">
+						<div class="header">
+							<h1 class="poster">John Doe</h1>
+							<div class="date">21/07/2021</div>
+						</div>
+						<div class="text margin-top-1">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id lobortis sapien.
+							Praesent ut enim sit amet eros consequat porta. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+							Phasellus quis quam massa. Phasellus ipsum massa, facilisis nec lobortis non, scelerisque vel magna
+						</div>
+					</div>
+					<div class="margin-top-2 align-right">
+						<a routerLink="/app/products">View All Reviews</a>
+					</div>
 				</div>
 			</div>
 		</div>

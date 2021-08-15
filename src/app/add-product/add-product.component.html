@@ -84,8 +84,8 @@
 						<th class="align-right">Action</th>
 					</tr>
 					<tr *ngFor="let productProperty of productProperties">
-						<td>{{productProperty?.type | titlecase}}</td>
-						<td>{{productProperty?.name | titlecase}}</td>
+						<td>{{productProperty?.property_type | titlecase}}</td>
+						<td>{{productProperty?.property_name | titlecase}}</td>
 						<td>{{productProperty?.value | titlecase}}</td>
 						<td class="align-right">
 							<mat-icon class="clickable" (click)="deleteProductProperty(productProperty)">delete</mat-icon>
