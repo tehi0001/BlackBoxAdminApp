@@ -192,7 +192,7 @@ export class AddProductComponent implements OnInit {
 
 					if(response.success) {
 						this.dialogService.notify("Product successfully updated", "success");
-						this.router.navigateByUrl("/app/products");
+						this.router.navigateByUrl("/app/products/" + param.id);
 					}
 					else {
 						this.dialogService.notify(response.message);

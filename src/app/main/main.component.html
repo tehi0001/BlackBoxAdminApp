@@ -1,32 +1,53 @@
-<div class="navbar">
-	<img class="navbar-logo" src="assets/images/logo.png">
-	<div class="flex-fill"></div>
-	<button mat-icon-button>
-		<mat-icon matBadge="5" matBadgeColor="warn">notifications</mat-icon>
-	</button>
-	<a class="session-user clickable">
-		<img src="assets/dummies/user.jpeg">
-		<span>John Doe</span>
-		<mat-icon>keyboard_arrow_down</mat-icon>
-	</a>
-</div>
+<mat-drawer-container [hasBackdrop]="false">
+	<mat-drawer #notificationDrawer mode="push" position="end" class="notification-drawer">
+		Notifications
+	</mat-drawer>
 
-<div class="main-content">
-	<div class="side-nav">
-		<ul>
-			<li><a routerLink="/app/dashboard" routerLinkActive="active"><mat-icon>home</mat-icon> Home</a></li>
-			<li><a routerLink="/app/product-categories" routerLinkActive="active"><mat-icon>category</mat-icon> Product Categories</a></li>
-			<li><a routerLink="/app/products" routerLinkActive="active"><mat-icon>inventory</mat-icon> Products</a></li>
-			<li><a routerLink="/app/orders" routerLinkActive="active"><mat-icon>receipt_long</mat-icon> Orders</a></li>
-			<li><a routerLink="/app/customers" routerLinkActive="active"><mat-icon>people_alt</mat-icon> Customers</a></li>
-			<li><a routerLink="/app/shipping-costs" routerLinkActive="active"><mat-icon>local_shipping</mat-icon> Shipping Costs</a></li>
-			<li><a routerLink="/app/promotions" routerLinkActive="active"><mat-icon>local_offer</mat-icon> Promotions</a></li>
-			<li><a routerLink="/app/administrators" routerLinkActive="active"><mat-icon>admin_panel_settings</mat-icon> Administrators</a></li>
-			<li><a routerLink="/app/settings" routerLinkActive="active"><mat-icon>settings</mat-icon> Profile & Settings</a></li>
-			<li><a routerLink="/app/logout"><mat-icon>logout</mat-icon> Sign Out</a></li>
-		</ul>
+	<div class="navbar">
+		<img class="navbar-logo" src="assets/images/logo.png">
+		<div class="flex-fill"></div>
+		<button mat-icon-button (click)="notificationDrawer.toggle()">
+			<mat-icon matBadge="5" matBadgeColor="warn">notifications</mat-icon>
+		</button>
+		<a class="session-user clickable" [matMenuTriggerFor]="userMenu">
+			<img src="assets/dummies/user.jpeg">
+			<span>John Doe</span>
+			<mat-icon>keyboard_arrow_down</mat-icon>
+		</a>
+		<mat-menu #userMenu="matMenu">
+			<button mat-menu-item>
+				<mat-icon>person</mat-icon>
+				<span>My Profile</span>
+			</button>
+			<button mat-menu-item>
+				<mat-icon>manage_accounts</mat-icon>
+				<span>Account Settings</span>
+			</button>
+			<button mat-menu-item routerLink="/app/logout">
+				<mat-icon>logout</mat-icon>
+				<span>Sign Out</span>
+			</button>
+		</mat-menu>
 	</div>
-	<div class="route-content flex-fill">
-		<router-outlet></router-outlet>
+
+	<div class="main-content">
+		<div class="side-nav">
+			<ul>
+				<li><a routerLink="/app/dashboard" routerLinkActive="active"><mat-icon>home</mat-icon> Home</a></li>
+				<li><a routerLink="/app/product-categories" routerLinkActive="active"><mat-icon>category</mat-icon> Product Categories</a></li>
+				<li><a routerLink="/app/products" routerLinkActive="active"><mat-icon>inventory</mat-icon> Products</a></li>
+				<li><a routerLink="/app/orders" routerLinkActive="active"><mat-icon>receipt_long</mat-icon> Orders</a></li>
+				<li><a routerLink="/app/customers" routerLinkActive="active"><mat-icon>people_alt</mat-icon> Customers</a></li>
+				<li><a routerLink="/app/shipping-costs" routerLinkActive="active"><mat-icon>local_shipping</mat-icon> Shipping Costs</a></li>
+				<li><a routerLink="/app/promotions" routerLinkActive="active"><mat-icon>local_offer</mat-icon> Promotions</a></li>
+				<li><a routerLink="/app/administrators" routerLinkActive="active"><mat-icon>admin_panel_settings</mat-icon> Administrators</a></li>
+				<li><a routerLink="/app/settings" routerLinkActive="active"><mat-icon>settings</mat-icon> Profile & Settings</a></li>
+				<li><a routerLink="/app/logout"><mat-icon>logout</mat-icon> Sign Out</a></li>
+			</ul>
+		</div>
+		<div class="route-content flex-fill">
+			<router-outlet></router-outlet>
+		</div>
 	</div>
-</div>
+
+</mat-drawer-container>

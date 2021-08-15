@@ -1,6 +1,6 @@
 <div class="page-header">
 	<h1>Product Details</h1>
-	<button mat-raised-button color="accent" routerLink="/app/products">
+	<button mat-raised-button color="accent" routerLink="/app/products" [disabled]="deleteInProgress">
 		<mat-icon>arrow_back</mat-icon>
 		Back to products
 	</button>
@@ -27,10 +27,20 @@
 				<div class="margin-top-1">{{product?.category_name}}</div>
 				<div class="margin-top-1 text-primary">{{product?.manufacturer}}</div>
 				<div style="display: flex; align-items: center;" class="margin-top-2">
-					<div class="price">{{product?.price | currency:"ZAR":"symbol-narrow"}}</div>
-					<div class="stock-count">{{product?.stock}} in stock</div>
+					<div class="price">
+						<div [ngClass]="{strike: product?.discount > 0}">
+							{{product?.price | currency:"ZAR":"symbol-narrow"}}
+						</div>
+						<div *ngIf="product?.discount > 0" class="margin-top-half">
+							{{product?.price - (product?.price * (product?.discount / 100)) | currency:"ZAR":"symbol-narrow"}}
+							(-{{product?.discount}}%)
+						</div>
+					</div>
+					<div class="indicator" [ngClass]="{red: product?.stock == 0, green: product?.stock > lowStockLimit, yellow: (product?.stock > 0 && product?.stock <= lowStockLimit)}">
+						{{product?.stock == 0 ? 'Out of stock' : product?.stock + ' in stock'}}
+					</div>
 				</div>
-				<div class="margin-top-2 properties">
+				<div class="margin-top-3 properties">
 					<div class="property" *ngFor="let property of productProperties?.others">
 						<div class="property-name">{{property?.property_name | uppercase}}</div>
 						<div class="property-values">
@@ -44,15 +54,19 @@
 						</div>
 					</div>
 				</div>
-				<div class="margin-top-2">
+				<div class="margin-top-3">
+					This product was added on {{product?.entrydate | date:'full'}}
+				</div>
+				<div class="margin-top-3">
 					{{product?.description}}
 				</div>
 				<div class="margin-top-3" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3em">
-					<button mat-raised-button color="primary" class="full-width" routerLink="/app/products/{{product?.id}}/edit">
+					<button mat-raised-button color="primary" class="full-width" routerLink="/app/products/{{product?.id}}/edit" [disabled]="deleteInProgress">
 						EDIT THIS PRODUCT
 					</button>
-					<button mat-raised-button color="warn" class="full-width">
-						DELETE THIS PRODUCT
+					<button mat-raised-button color="warn" class="full-width" [disabled]="deleteInProgress" (click)="deleteProduct(product?.id, product?.product_name)">
+						<span *ngIf="!deleteInProgress">DELETE THIS PRODUCT</span>
+						<mat-spinner diameter="20" *ngIf="deleteInProgress"></mat-spinner>
 					</button>
 				</div>
 			</div>

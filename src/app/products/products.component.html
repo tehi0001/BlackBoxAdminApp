@@ -17,7 +17,7 @@
 			<ng-container matColumnDef="sn">
 				<th mat-header-cell *matHeaderCellDef> Picture </th>
 				<td mat-cell *matCellDef="let product">
-					<img src="{{product?.image}}" class="product-img">
+					<img src="{{product?.image}}" class="product-img"  matBadge="2" matBadgeColor="primary">
 				</td>
 			</ng-container>
 
@@ -36,13 +36,25 @@
 			<!-- Price Column -->
 			<ng-container matColumnDef="description">
 				<th mat-header-cell *matHeaderCellDef> Price </th>
-				<td mat-cell *matCellDef="let product"> {{product?.price}} </td>
+				<td mat-cell *matCellDef="let product">
+					<div [ngClass]="{strike: product?.discount > 0}">
+						{{product?.price | currency:"ZAR":"symbol-narrow"}}
+					</div>
+					<div *ngIf="product?.discount > 0">
+						{{product?.price - (product?.price * (product?.discount / 100)) | currency:"ZAR":"symbol-narrow"}}
+						(-{{product?.discount}}%)
+					</div>
+				</td>
 			</ng-container>
 
 			<!-- Stock Column -->
 			<ng-container matColumnDef="dateCreated">
 				<th mat-header-cell *matHeaderCellDef> Stock </th>
-				<td mat-cell *matCellDef="let product"> {{product?.stock}} </td>
+				<td mat-cell *matCellDef="let product">
+					<span class="indicator" [ngClass]="{red: product?.stock == 0, green: product?.stock > lowStockLimit, yellow: (product?.stock > 0 && product?.stock <= lowStockLimit)}">
+						{{product?.stock == 0 ? 'Out' : product?.stock}}
+					</span>
+				</td>
 			</ng-container>
 
 			<!-- Action Column -->

@@ -5,6 +5,7 @@ import {DialogService} from "../services/dialog.service";
 import {SessionService} from "../services/session.service";
 import {ProductService} from "../services/product.service";
 import {MatPaginator} from "@angular/material/paginator";
+import {LOW_STOCK_LIMIT} from "../../config";
 
 @Component({
 	selector: 'app-products',
@@ -23,6 +24,8 @@ export class ProductsComponent implements OnInit {
 	tableDataSource: MatTableDataSource<Product>
 
 	displayedColumns: string[] = ['sn', 'name', 'category', 'description', 'dateCreated', 'actions'];
+
+	lowStockLimit = LOW_STOCK_LIMIT;
 
 	constructor(
 		private dialogService: DialogService,

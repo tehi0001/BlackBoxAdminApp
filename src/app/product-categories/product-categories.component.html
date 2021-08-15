@@ -27,7 +27,7 @@
 			<!-- Date Column -->
 			<ng-container matColumnDef="dateCreated">
 				<th mat-header-cell *matHeaderCellDef> Date Created </th>
-				<td mat-cell *matCellDef="let category"> {{category?.entry_date}} </td>
+				<td mat-cell *matCellDef="let category"> {{category?.entry_date | date:'medium'}} </td>
 			</ng-container>
 
 			<!-- Action Column -->

@@ -1,5 +1,10 @@
 @import "src/theme";
 
+.notification-drawer {
+	width: 300px;
+	padding: 1em;
+}
+
 .navbar {
 	display: flex;
 	align-items: center;
@@ -76,6 +81,7 @@
 	}
 	.route-content {
 		background: $tint;
+		min-height: 85vh;
 		padding: 3em 3em 4em;
 		flex: 1 1 70%;
 	}

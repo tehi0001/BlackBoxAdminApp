@@ -28,7 +28,7 @@
 					margin-right: 1em;
 
 					&.selected {
-						background: $light-gray;
+						box-shadow: 0 0 10px;
 					}
 
 					img {
@@ -47,12 +47,6 @@
 				font-size: 20px;
 
 				margin-right: 3em;
-			}
-			.stock-count {
-				background: green;
-				padding: .1em 1em;
-				color: #fff;
-				border-radius: 20px;
 			}
 
 			.properties {

@@ -123,3 +123,29 @@ button {
 .success-message {
 	color: #86c988 !important;
 }
+
+//Indicators
+
+.indicator {
+	padding: .1em 1em;
+	color: #fff;
+	border-radius: 20px;
+
+	&.green {
+		background: green;
+	}
+	&.red {
+		background: red;
+	}
+	&.yellow {
+		background: #efd14b;
+		color: #000;
+	}
+}
+
+
+//Helpers
+
+.strike {
+	text-decoration: line-through;
+}
