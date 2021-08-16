@@ -54,12 +54,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="margin-top-3">
+				<div class="margin-top-3" style="font-size: 15px; font-style: italic;">
 					This product was added on {{product?.entrydate | date:'full'}}
 				</div>
-				<div class="margin-top-3">
-					{{product?.description}}
-				</div>
+				<div class="margin-top-3" [innerHTML]="product?.description | nl2br"></div>
 				<div class="margin-top-3" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3em">
 					<button mat-raised-button color="primary" class="full-width" routerLink="/app/products/{{product?.id}}/edit" [disabled]="deleteInProgress">
 						EDIT THIS PRODUCT

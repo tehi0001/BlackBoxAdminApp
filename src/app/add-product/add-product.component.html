@@ -44,12 +44,13 @@
 				<input type="text" matInput formControlName="manufacturer">
 			</mat-form-field>
 			<mat-form-field appearance="outline" class="full-width">
-				<mat-label>Price</mat-label>
+				<mat-label>Price (excluding discount)y</mat-label>
 				<input type="number" min="0" matInput formControlName="price">
 			</mat-form-field>
 			<mat-form-field appearance="outline" class="full-width">
-				<mat-label>Discount (%)</mat-label>
+				<mat-label>Discount (optional)</mat-label>
 				<input type="number" max="100" matInput formControlName="discount">
+				<mat-hint>(e.g. 10 to apply 10% discount)</mat-hint>
 			</mat-form-field>
 			<mat-form-field appearance="outline" class="full-width">
 				<mat-label>Stock</mat-label>

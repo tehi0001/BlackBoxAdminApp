@@ -85,9 +85,9 @@ export class ViewProductComponent implements OnInit {
 			}
 		})
 
-		groupedProps.forEach(group => {
-			// @ts-ignore
-			this.productProperties.others.forEach((prop, index) => {
+		// @ts-ignore
+		this.productProperties.others.forEach(prop => {
+			groupedProps.forEach((group, index) => {
 				if(group.property_name == prop.property_name) {
 					groupedProps[index]?.values.push(prop.value);
 				}

@@ -30,6 +30,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatDialog} from "@angular/material/dialog";
 import { AddProductPropertyComponent } from './add-product-property/add-product-property.component';
+import { Nl2brPipe } from './pipes/nl2br.pipe';
 
 @NgModule({
 	declarations: [
@@ -53,7 +54,8 @@ import { AddProductPropertyComponent } from './add-product-property/add-product-
 		AddShippingCostComponent,
 		ViewCustomerComponent,
   		ConfirmDialogComponent,
-    AddProductPropertyComponent
+    AddProductPropertyComponent,
+    Nl2brPipe
 	],
 	imports: [
 		BrowserModule,
