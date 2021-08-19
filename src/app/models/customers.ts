@@ -6,4 +6,5 @@ export interface Customer {
 	total_spend: number;
 	is_registered: boolean;
 	joindate: string;
+	status: number;
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from "@angular/common";
+import {Customer} from "../models/customers";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-view-customer',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewCustomerComponent implements OnInit {
 
-  constructor() { }
+	// @ts-ignore
+	customer: Customer;
 
-  ngOnInit(): void {
-  }
+	constructor(
+		private location: Location,
+		private router: Router
+	) {	}
+
+	ngOnInit(): void {
+		let state = this.location.getState();
+
+		// @ts-ignore
+		if(state.customer) {
+			// @ts-ignore
+			this.customer = state.customer;
+		}
+		else {
+			this.router.navigateByUrl("/app/customers");
+		}
+	}
 
 }
