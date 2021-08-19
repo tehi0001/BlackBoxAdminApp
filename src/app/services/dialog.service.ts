@@ -35,6 +35,9 @@ export class DialogService {
 				if(response) {
 					observer.next();
 				}
+				else {
+					observer.error();
+				}
 			})
 		})
 	}

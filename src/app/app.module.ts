@@ -31,6 +31,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import {MatDialog} from "@angular/material/dialog";
 import { AddProductPropertyComponent } from './add-product-property/add-product-property.component';
 import { Nl2brPipe } from './pipes/nl2br.pipe';
+import { OrderStatusPipe } from './pipes/order-status.pipe';
 
 @NgModule({
 	declarations: [
@@ -55,7 +56,8 @@ import { Nl2brPipe } from './pipes/nl2br.pipe';
 		ViewCustomerComponent,
   		ConfirmDialogComponent,
     AddProductPropertyComponent,
-    Nl2brPipe
+    Nl2brPipe,
+    OrderStatusPipe
 	],
 	imports: [
 		BrowserModule,

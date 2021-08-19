@@ -1,7 +1,7 @@
 export interface Order {
-	id: number;
-	date: String;
+	order_number: number;
+	date: string;
 	billing_name: string;
 	total: number;
-	payment_method: string;
+	status: number;
 }
