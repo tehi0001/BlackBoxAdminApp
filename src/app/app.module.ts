@@ -32,6 +32,9 @@ import {MatDialog} from "@angular/material/dialog";
 import { AddProductPropertyComponent } from './add-product-property/add-product-property.component';
 import { Nl2brPipe } from './pipes/nl2br.pipe';
 import { OrderStatusPipe } from './pipes/order-status.pipe';
+import { AddPromotionComponent } from './add-promotion/add-promotion.component';
+import {MAT_DATE_FORMATS} from "@angular/material/core";
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule, MomentDateModule} from "@angular/material-moment-adapter";
 
 @NgModule({
 	declarations: [
@@ -57,7 +60,8 @@ import { OrderStatusPipe } from './pipes/order-status.pipe';
   		ConfirmDialogComponent,
     AddProductPropertyComponent,
     Nl2brPipe,
-    OrderStatusPipe
+    OrderStatusPipe,
+    AddPromotionComponent
 	],
 	imports: [
 		BrowserModule,
@@ -65,9 +69,31 @@ import { OrderStatusPipe } from './pipes/order-status.pipe';
 		BrowserAnimationsModule,
 		MaterialModule,
 		ReactiveFormsModule,
-		HttpClientModule
+		HttpClientModule,
+		MatMomentDateModule
 	],
-	providers: [SessionService, DialogService],
+	providers: [
+		SessionService,
+		DialogService,
+		{
+			provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+			useValue: {strict: true}
+		},
+		{
+			provide: MAT_DATE_FORMATS,
+			useValue: {
+				parse: {
+					dateInput: ['LL'],
+				},
+				display: {
+					dateInput: 'LL',
+					monthYearLabel: 'MMM YYYY',
+					dateA11yLabel: 'LL',
+					monthYearA11yLabel: 'MMMM YYYY',
+				},
+			},
+		}
+	],
 	entryComponents: [ConfirmDialogComponent],
 	bootstrap: [AppComponent]
 })

@@ -1,0 +1,23 @@
+@import "src/theme";
+
+mat-card {
+	padding: 4em;
+
+	.promotion-img {
+		border: 1px solid $light-gray;
+
+		.upload-btn {
+			padding: 3em;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-transform: uppercase;
+			color: $primary;
+		}
+
+		img {
+			max-height: 300px;
+			max-width: 100%;
+		}
+	}
+}

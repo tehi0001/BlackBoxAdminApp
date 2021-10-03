@@ -1,0 +1,58 @@
+<div class="page-header">
+	<h1>{{formSaveMode == "create" ? "Add" : "Edit"}} Promotion</h1>
+	<button mat-raised-button color="warn" routerLink="/app/promotions">
+		<mat-icon>close</mat-icon>
+		Cancel
+	</button>
+</div>
+
+<mat-card class="margin-top-3">
+	<form [formGroup]="addPromotionForm" (submit)="onSave()">
+		<input id="file-upload" type="file" accept="image/*" hidden (change)="addPromotionImage($event)">
+		<label for="file-upload">
+			<div class="promotion-img clickable">
+				<img [src]="promotionImage" #banner>
+				<div class="upload-btn" *ngIf="promotionImage.length == 0">
+					Upload Banner
+				</div>
+			</div>
+		</label>
+		<mat-form-field appearance="outline" class="full-width margin-top-1-half">
+			<mat-label>Promotion name</mat-label>
+			<input type="text" matInput formControlName="name">
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>Description</mat-label>
+			<input type="text" matInput formControlName="description">
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>Start date</mat-label>
+			<input matInput [matDatepicker]="startPicker" formControlName="startDate" (click)="startPicker.open()" (focus)="startPicker.open()" readonly [min]="minStartDate">
+			<mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+			<mat-datepicker #startPicker></mat-datepicker>
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>End date</mat-label>
+			<input matInput [matDatepicker]="endPicker" formControlName="endDate" (click)="endPicker.open()" (focus)="endPicker.open()" readonly [min]="minStartDate">
+			<mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+			<mat-datepicker #endPicker></mat-datepicker>
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>URL</mat-label>
+			<input type="text" matInput formControlName="url">
+		</mat-form-field>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-label>Status</mat-label>
+			<mat-select formControlName="status">
+				<mat-option value="1">Active</mat-option>
+				<mat-option value="0">Inactive</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<div class="margin-top-1">
+			<button mat-raised-button color="primary" class="full-width" [disabled]="addPromotionForm.invalid || addPromotionFormBusy">
+				<span *ngIf="!addPromotionFormBusy">Save</span>
+				<mat-spinner diameter="20" *ngIf="addPromotionFormBusy"></mat-spinner>
+			</button>
+		</div>
+	</form>
+</mat-card>

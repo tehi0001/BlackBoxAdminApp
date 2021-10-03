@@ -16,6 +16,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
 	declarations: [],
@@ -36,7 +37,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 		MatPaginatorModule,
 		MatProgressSpinnerModule,
 		MatSnackBarModule,
-		MatDialogModule
+		MatDialogModule,
+		MatDatepickerModule,
 	],
 	exports: [
 		MatToolbarModule,
@@ -54,7 +56,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 		MatPaginatorModule,
 		MatProgressSpinnerModule,
 		MatSnackBarModule,
-		MatDialogModule
+		MatDialogModule,
+		MatDatepickerModule,
 	]
 })
 export class MaterialModule {}
