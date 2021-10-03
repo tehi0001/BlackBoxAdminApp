@@ -1,0 +1,33 @@
+@import "/src/theme";
+
+.banner {
+	border: 1px solid $light-gray;
+
+	img {
+		max-height: 200px;
+		max-width: 100%;
+	}
+}
+
+.view-table {
+
+	th, td {
+		padding: 1em;
+	}
+
+	th {
+		text-align: left;
+	}
+}
+
+.buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	button {
+		&:first-child {
+			margin-right: 2em;
+		}
+	}
+}

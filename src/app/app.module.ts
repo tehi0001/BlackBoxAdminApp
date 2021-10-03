@@ -35,6 +35,7 @@ import { OrderStatusPipe } from './pipes/order-status.pipe';
 import { AddPromotionComponent } from './add-promotion/add-promotion.component';
 import {MAT_DATE_FORMATS} from "@angular/material/core";
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule, MomentDateModule} from "@angular/material-moment-adapter";
+import { ViewPromotionComponent } from './view-promotion/view-promotion.component';
 
 @NgModule({
 	declarations: [
@@ -61,7 +62,8 @@ import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule, MomentDateModule} 
     AddProductPropertyComponent,
     Nl2brPipe,
     OrderStatusPipe,
-    AddPromotionComponent
+    AddPromotionComponent,
+    ViewPromotionComponent
 	],
 	imports: [
 		BrowserModule,

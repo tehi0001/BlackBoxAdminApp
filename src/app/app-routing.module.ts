@@ -20,6 +20,7 @@ import {AddShippingCostComponent} from "./add-shipping-cost/add-shipping-cost.co
 import {ViewCustomerComponent} from "./view-customer/view-customer.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {AddPromotionComponent} from "./add-promotion/add-promotion.component";
+import {ViewPromotionComponent} from "./view-promotion/view-promotion.component";
 
 const routes: Routes = [
 	{
@@ -113,7 +114,11 @@ const routes: Routes = [
 				component: AddPromotionComponent
 			},
 			{
-				path: "promotions/add",
+				path: "promotions/:id",
+				component: ViewPromotionComponent
+			},
+			{
+				path: "promotions/:id/edit",
 				component: AddPromotionComponent,
 				data: {editMode: true}
 			},

@@ -1,0 +1,56 @@
+<div class="page-header">
+	<h1>Promotion Details</h1>
+	<button mat-raised-button color="accent" routerLink="/app/promotions" [disabled]="serverBusy || deletingPromotion">
+		<mat-icon>arrow_back</mat-icon>
+		Back to Promotions
+	</button>
+</div>
+
+<mat-card class="margin-top-2">
+	<div class="margin-top-4" *ngIf="serverBusy">
+		<mat-spinner class="loader" diameter="40"></mat-spinner>
+	</div>
+	<div *ngIf="!serverBusy">
+		<div class="banner">
+			<img src="{{promotion?.image}}">
+		</div>
+		<table class="view-table">
+			<tr>
+				<th>Name :</th>
+				<td>{{promotion?.name}}</td>
+			</tr>
+			<tr>
+				<th>Description :</th>
+				<td>{{promotion?.description}}</td>
+			</tr>
+			<tr>
+				<th>Created :</th>
+				<td>{{promotion?.entrydate | date}}</td>
+			</tr>
+			<tr>
+				<th>Start Date :</th>
+				<td>{{promotion?.start_date | date:'mediumDate'}}</td>
+			</tr>
+			<tr>
+				<th>End Date :</th>
+				<td>{{promotion?.end_date | date:'mediumDate'}}</td>
+			</tr>
+			<tr>
+				<th>URL :</th>
+				<td>{{promotion?.url}}</td>
+			</tr>
+			<tr>
+				<th>Status :</th>
+				<td>{{promotion?.status == 1 ? 'Active' : 'Inactive'}}</td>
+			</tr>
+		</table>
+
+		<div class="align-center buttons">
+			<button mat-raised-button color="primary" [disabled]="deletingPromotion" routerLink="/app/promotions/{{promotion?.id}}/edit" [state]="{promotion: promotion}">EDIT</button>
+			<button mat-raised-button color="warn" [disabled]="deletingPromotion" (click)="onDelete()">
+				<span *ngIf="!deletingPromotion">DELETE</span>
+				<mat-spinner diameter="20" *ngIf="deletingPromotion"></mat-spinner>
+			</button>
+		</div>
+	</div>
+</mat-card>

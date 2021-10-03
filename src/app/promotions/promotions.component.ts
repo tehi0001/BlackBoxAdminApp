@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {DeliveryCategory} from "../models/shipping-costs";
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Promotion} from "../models/promotions";
+import {PromotionsService} from "../services/promotions.service";
+import {SessionService} from "../services/session.service";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-promotions',
@@ -10,31 +12,33 @@ import {Promotion} from "../models/promotions";
 })
 export class PromotionsComponent implements OnInit {
 
-	dummyData: Promotion[] = [];
-
+	// @ts-ignore
 	tableDataSource: MatTableDataSource<Promotion>
 
 	displayedColumns: string[] = ['name', 'description', 'dateCreated', 'startDate', 'endDate', 'actions'];
 
-	constructor() {
+	loadingDataFromApi: boolean = true;
 
-		for (let i = 0; i < 10; i++) {
-			let promotion: Promotion = {
-				id: i + 100,
-				name: "Back to School 2020",
-				description: "20% off all back to school stationery",
-				date_created: "10 May 2020",
-				start_date: "01 Jun 2021",
-				end_date: "10 Jul 2021"
+	// @ts-ignore
+	@ViewChild(MatPaginator) paginator: MatPaginator
+
+	constructor(
+		private promotionService: PromotionsService,
+		private sessionService: SessionService
+	) {	}
+
+	ngOnInit(): void {
+		this.promotionService.getAll().subscribe(response => {
+			response = this.sessionService.renewSessionToken(response);
+
+			if(response.success) {
+				this.tableDataSource = new MatTableDataSource<Promotion>(response.data);
+				this.tableDataSource.paginator = this.paginator;
+				this.loadingDataFromApi = false;
 			}
-
-			this.dummyData.push(promotion);
-		}
-
-		this.tableDataSource = new MatTableDataSource<Promotion>(this.dummyData);
+		}, error => {
+			this.sessionService.handleHttpErrors(error);
+		})
 	}
-
-  ngOnInit(): void {
-  }
 
 }
