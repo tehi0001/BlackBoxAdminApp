@@ -19,6 +19,10 @@ export class UsersService {
 	}
 
 	deleteUser(id: number): Observable<any> {
-		return this.http.post(API_URL + "/delete-user", {id: id}, this.sessionService.httpRequestConfig);
+		return this.http.post(API_URL + "/delete-customer", {id: id}, this.sessionService.httpRequestConfig);
+	}
+
+	editUser(id: number, data: any): Observable<any> {
+		return this.http.post(API_URL + "/edit-customer/" + id, data, this.sessionService.httpRequestConfig);
 	}
 }

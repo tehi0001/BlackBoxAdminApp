@@ -7,38 +7,73 @@
 </div>
 
 <mat-card class="margin-top-3 customer-details">
-	<table>
-		<tr>
-			<th>First Name</th>
-			<td>{{customer?.firstname}}</td>
-		</tr>
-		<tr>
-			<th>Last Name</th>
-			<td>{{customer?.lastname}}</td>
-		</tr>
-		<tr>
-			<th>Email</th>
-			<td>{{customer?.email}}</td>
-		</tr>
-		<tr>
-			<th>Total Spending</th>
-			<td>{{customer?.total_spend}}</td>
-		</tr>
-		<tr>
-			<th>Join Date</th>
-			<td>{{customer?.joindate | date:'medium'}}</td>
-		</tr>
-		<tr>
-			<th>Registered User</th>
-			<td>{{customer?.is_registered ? "YES" : "NO"}}</td>
-		</tr>
-		<tr>
-			<th>Status</th>
-			<td>{{customer?.status == 1 ? "ACTIVE" : "INACTIVE"}}</td>
-		</tr>
-	</table>
-	<div class="margin-top-2 align-center">
-		<button mat-raised-button color="primary" style="margin-right: 2em">EDIT CUSTOMER DETAILS</button>
-		<button mat-raised-button color="warn">DELETE CUSTOMER</button>
+	<div *ngIf="!showEditForm">
+		<table>
+			<tr>
+				<th>First Name</th>
+				<td>{{customer?.firstname}}</td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td>{{customer?.lastname}}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{customer?.email}}</td>
+			</tr>
+			<tr>
+				<th>Total Spending</th>
+				<td>{{customer?.total_spend}}</td>
+			</tr>
+			<tr>
+				<th>Join Date</th>
+				<td>{{customer?.joindate | date:'medium'}}</td>
+			</tr>
+			<tr>
+				<th>Registered User</th>
+				<td>{{customer?.is_registered ? "YES" : "NO"}}</td>
+			</tr>
+			<tr>
+				<th>Status</th>
+				<td>{{customer?.status == 1 ? "ACTIVE" : "INACTIVE"}}</td>
+			</tr>
+		</table>
+		<div class="margin-top-2 flex items-center">
+			<button mat-raised-button color="primary" style="margin-right: 2em" (click)="showEditForm = true">EDIT</button>
+			<button mat-raised-button color="warn" (click)="onDelete()" [disabled]="deletingCustomer">
+				<span *ngIf="!deletingCustomer">DELETE</span>
+				<mat-spinner diameter="20" *ngIf="deletingCustomer"></mat-spinner>
+			</button>
+		</div>
+	</div>
+
+	<div *ngIf="showEditForm">
+		<form [formGroup]="editCustomerForm" (submit)="onEdit()">
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>First name</mat-label>
+				<input type="text" matInput formControlName="firstname">
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Last name</mat-label>
+				<input type="text" matInput formControlName="lastname">
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>email</mat-label>
+				<input type="email" matInput formControlName="email">
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-select formControlName="status">
+					<mat-option value="1">Active</mat-option>
+					<mat-option value="2">Inactive</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<div class="margin-top-1 flex space-between items-center">
+				<button type="submit" mat-raised-button color="primary" [disabled]="editCustomerForm.invalid || editingCustomer">
+					<span *ngIf="!editingCustomer">SAVE</span>
+					<mat-spinner diameter="20" *ngIf="editingCustomer"></mat-spinner>
+				</button>
+				<button type="button" mat-raised-button color="warn" (click)="showEditForm = false">CANCEL</button>
+			</div>
+		</form>
 	</div>
 </mat-card>

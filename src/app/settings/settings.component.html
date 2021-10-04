@@ -70,7 +70,7 @@
 				<mat-icon>{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
 			</button>
 		</mat-form-field>
-		<div class="margin-top-1 align-right">
+		<div class="margin-top-1 align-center">
 			<button type="submit" mat-raised-button color="primary" [disabled]="passwordForm.invalid || passwordFormBusy">
 				<span *ngIf="!passwordFormBusy">SAVE</span>
 				<mat-spinner diameter="20" *ngIf="passwordFormBusy"></mat-spinner>
