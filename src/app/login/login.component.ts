@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
 		this.authService.auth(this.authForm.value).subscribe(response => {
 			if(response.success) {
 				this.authService.startSession(response.token);
+				this.sessionService.user = response.data;
 				this.router.navigateByUrl("/app");
 			}
 			else {

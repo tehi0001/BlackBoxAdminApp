@@ -4,6 +4,12 @@ import {DialogService} from "./dialog.service";
 import {NETWORK_ERROR_MESSAGE, SERVER_ERROR_MESSAGE, SESSION_UNAUTHORIZED_MESSAGE} from "../../config";
 import {Router} from "@angular/router";
 
+interface User {
+	firstname: string,
+	lastname: string,
+	isSuperUser: boolean
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +18,9 @@ export class SessionService {
 	sessionToken: string | null;
 
 	isLoggedIn: boolean = false;
+
+	// @ts-ignore
+	user: User;
 
 	constructor(
 		private dialogService: DialogService,

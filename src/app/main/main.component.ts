@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SessionService} from "../services/session.service";
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+	constructor(
+		public sessionService: SessionService
+	) { }
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+	}
 
 }

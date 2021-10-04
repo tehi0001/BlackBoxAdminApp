@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {SessionService} from "./session.service";
-import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {API_URL} from "../../config";
@@ -12,7 +11,6 @@ export class PromotionsService {
 
 	constructor(
 		private sessionService: SessionService,
-		private router: Router,
 		private http: HttpClient
 	) { }
 

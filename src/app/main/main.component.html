@@ -6,20 +6,23 @@
 	<div class="navbar">
 		<img class="navbar-logo" src="assets/images/logo.png">
 		<div class="flex-fill"></div>
+
+		<!--
 		<button mat-icon-button (click)="notificationDrawer.toggle()">
 			<mat-icon matBadge="5" matBadgeColor="warn">notifications</mat-icon>
 		</button>
+		-->
 		<a class="session-user clickable" [matMenuTriggerFor]="userMenu">
 			<img src="assets/dummies/user.jpeg">
-			<span>John Doe</span>
+			<span>{{sessionService.user?.firstname}} {{sessionService.user?.lastname}}</span>
 			<mat-icon>keyboard_arrow_down</mat-icon>
 		</a>
 		<mat-menu #userMenu="matMenu">
-			<button mat-menu-item>
+			<button mat-menu-item routerLink="/app/settings">
 				<mat-icon>person</mat-icon>
 				<span>My Profile</span>
 			</button>
-			<button mat-menu-item>
+			<button mat-menu-item routerLink="/app/settings">
 				<mat-icon>manage_accounts</mat-icon>
 				<span>Account Settings</span>
 			</button>

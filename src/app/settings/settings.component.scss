@@ -1,0 +1,17 @@
+mat-card {
+	padding: 2em;
+
+	h2 {
+		margin: 0;
+		margin-bottom: .5em;
+	}
+	table {
+		th, td {
+			padding: 1em;
+		}
+		th {
+			text-align: left;
+			padding-left: 0;
+		}
+	}
+}
