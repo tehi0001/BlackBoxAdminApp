@@ -25,4 +25,6 @@ export class UsersService {
 	editUser(id: number, data: any): Observable<any> {
 		return this.http.post(API_URL + "/edit-customer/" + id, data, this.sessionService.httpRequestConfig);
 	}
+
+
 }

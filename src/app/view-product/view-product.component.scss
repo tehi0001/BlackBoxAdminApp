@@ -1,19 +1,19 @@
 @import "src/theme";
 
 .view-product {
-	padding: 4em;
+	padding: 2em;
 	font-size: 15px;
 
 	.product-info {
 		display: flex;
+		column-gap: 5em;
 
 		.product-images {
-			margin-right: 7em;
 
 			.product-img-lg {
 
 				img {
-					width: 400px;
+					width: 300px;
 				}
 			}
 

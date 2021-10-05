@@ -1,3 +1,39 @@
-<div class="coming-soon">
-	<h1>Coming Soon</h1>
+<div class="page-header">
+	<h1>Dashboard</h1>
+</div>
+
+<div class="margin-top-4" *ngIf="loadingData">
+	<mat-spinner class="loader" diameter="40"></mat-spinner>
+</div>
+
+<div *ngIf="!loadingData">
+	<div class="tiles margin-top-2">
+		<mat-card class="tile">
+			<div class="tag">Avg. Order Value</div>
+			<div class="value">{{data?.average_sales | currency:'ZAR':'symbol-narrow'}}</div>
+			<div class="stat"><span class="insight">100% &#8593;</span> from last year</div>
+		</mat-card>
+		<mat-card class="tile">
+			<div class="tag">Total Orders</div>
+			<div class="value">{{data?.total_orders | number}}</div>
+			<div class="stat"><span class="insight">100% &#8593;</span> from last year</div>
+		</mat-card>
+		<mat-card class="tile">
+			<div class="tag">Unique Customers</div>
+			<div class="value">{{data?.customer_count | number}}</div>
+			<div class="stat"><span class="insight">100% &#8593;</span> from last year</div>
+		</mat-card>
+	</div>
+
+	<div class="charts margin-top-2">
+		<mat-card>
+			<div class="title">Sales Growth</div>
+			<canvas id="salesChart" width="600" height="300"></canvas>
+		</mat-card>
+
+		<mat-card>
+			<div class="title">Customers By Province</div>
+			<canvas id="customersChart" width="300" height="200"></canvas>
+		</mat-card>
+	</div>
 </div>

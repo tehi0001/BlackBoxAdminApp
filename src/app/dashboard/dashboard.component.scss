@@ -1,0 +1,43 @@
+@import "src/theme";
+
+.tiles {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 2em;
+
+	.tile {
+
+		.tag {
+			color: $dark-gray;
+			font-size: 15px;
+		}
+		.value {
+			margin-top: 1em;
+			font-size: 30px;
+		}
+
+		.stat {
+			margin-top: 1em;
+			color: $dark-gray;
+
+			.insight {
+				color: green;
+				font-weight: 500;
+			}
+		}
+	}
+}
+
+.charts {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 2em;
+
+	mat-card {
+		.title {
+			font-weight: 500;
+			font-size: 15px;
+			margin-bottom: 2em;
+		}
+	}
+}
