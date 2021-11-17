@@ -11,6 +11,10 @@
 		<mat-spinner diameter="40" class="loader"></mat-spinner>
 	</div>
 	<div [hidden]="loadingProductsFromApi">
+		<mat-form-field appearance="standard" class="full-width">
+			<mat-label>Search</mat-label>
+			<input matInput (keyup)="applyFilter($event)" #input>
+		</mat-form-field>
 		<table mat-table [dataSource]="tableDataSource" class="full-width">
 
 			<!-- Picture Column -->

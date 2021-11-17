@@ -33,4 +33,8 @@ export class ProductService {
 	deleteProduct(id: number) :Observable<any> {
 		return this.http.post(API_URL + "/delete-product/", {id: id}, this.sessionService.httpRequestConfig);
 	}
+
+	deleteReview(id: number) :Observable<any> {
+		return this.http.post(API_URL + "/delete-review/", {id: id}, this.sessionService.httpRequestConfig);
+	}
 }

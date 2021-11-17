@@ -8,6 +8,10 @@
 	</div>
 
 	<div [hidden]="loadingDataFromApi">
+		<mat-form-field appearance="standard" class="full-width">
+			<mat-label>Search</mat-label>
+			<input matInput (keyup)="applyFilter($event)" #input>
+		</mat-form-field>
 		<table mat-table [dataSource]="tableDataSource" class="full-width">
 
 			<!-- Order No. Column -->

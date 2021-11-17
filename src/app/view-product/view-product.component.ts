@@ -114,4 +114,44 @@ export class ViewProductComponent implements OnInit {
 				})
 			})
 	}
+
+	makeArrayFromNumber(number: number) {
+		return Array.from(Array(number), (_, i) => i+1)
+	}
+
+	floor(number: number) {
+		return Math.floor(number);
+	}
+	ceil(number: number) {
+		return Math.ceil(number);
+	}
+
+	getRatingsPercentage(rating: number) {
+		let result: number = 0;
+		// @ts-ignore
+		this.product?.reviews.forEach(review => {
+			if(review?.rating == rating) {
+				result++;
+			}
+		})
+
+		return (result * 100) / this.product.reviews.length;
+	}
+
+	deleteReview(id: number) {
+		this.dialogService.confirm("Are you sure you want to delete this review?", "This review will be permanently deleted").subscribe(() => {
+			this.loadingDataFromApi = true;
+
+			this.productService.deleteReview(id).subscribe(response => {
+				response = this.sessionService.renewSessionToken(response);
+
+				if(response.success) {
+					this.dialogService.notify("Review successfully deleted", "success");
+					this.getProduct();
+				}
+			}, error => {
+				this.sessionService.handleHttpErrors(error);
+			})
+		})
+	}
 }

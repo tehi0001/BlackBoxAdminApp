@@ -51,4 +51,9 @@ export class CustomersComponent implements OnInit {
 		})
 	}
 
+	applyFilter(event: Event)  {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.tableDataSource.filter = filterValue.trim().toLowerCase();
+	}
+
 }

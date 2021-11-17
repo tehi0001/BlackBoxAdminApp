@@ -36,6 +36,8 @@ import { AddPromotionComponent } from './add-promotion/add-promotion.component';
 import {MAT_DATE_FORMATS} from "@angular/material/core";
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule, MomentDateModule} from "@angular/material-moment-adapter";
 import { ViewPromotionComponent } from './view-promotion/view-promotion.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
 	declarations: [
@@ -72,7 +74,13 @@ import { ViewPromotionComponent } from './view-promotion/view-promotion.componen
 		MaterialModule,
 		ReactiveFormsModule,
 		HttpClientModule,
-		MatMomentDateModule
+		MatMomentDateModule,
+  ServiceWorkerModule.register('ngsw-worker.js', {
+    enabled: environment.production,
+    // Register the ServiceWorker as soon as the app is stable
+    // or after 30 seconds (whichever comes first).
+    registrationStrategy: 'registerWhenStable:30000'
+  })
 	],
 	providers: [
 		SessionService,
